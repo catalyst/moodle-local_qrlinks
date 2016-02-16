@@ -23,3 +23,7 @@
  */
 
 $string['pluginname'] = 'QR Links';
+$string['form_element_header'] = 'Generate QR link';
+$string['form_element_description'] = 'Description';
+$string['form_element_url'] = 'URL';
+$string['form_element_name'] = 'Name';
