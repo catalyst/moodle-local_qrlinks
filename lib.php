@@ -22,7 +22,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+if (!defined('MOODLE_INTERNAL')) {
+    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page
+}
 
 function local_qrlinks_extend_settings_navigation($settingsnav, $context) {
     global $CFG, $PAGE;
