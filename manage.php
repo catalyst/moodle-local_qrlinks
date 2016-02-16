@@ -49,8 +49,26 @@ $mform = new qrlinks_form();
 if ($mform->is_cancelled()) {
 
 } else if ($fromform = $mform->get_data()) {
+    $name = $fromform->name;
+    $description = $fromform->description;
+    $url = $fromform->url;
+
+    $data = array('name' => $name,
+            'description' => $description,
+            'url' => $url,
+            'createdby' => $USER->id,
+            'timestamp' => time());
+
+    echo '<pre>' . print_r($data, 1) . '</pre>';
+
+    $DB->insert_record('local_qrlinks', $data);
 
 } else {
+
+    $data = $DB->get_records('local_qrlinks');
+
+    echo '<pre>' . print_r($data, 1) . '</pre>';
+
     $mform->display();
 }
 
