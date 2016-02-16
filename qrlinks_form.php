@@ -54,8 +54,6 @@ class qrlinks_form extends moodleform {
         $mform->setType('url', PARAM_NOTAGS);
 
         $this->add_action_buttons();
-
-
     }
 
     function validation($data, $files) {

@@ -22,10 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-//include_once('../../config.php');
-
-//defined('MOODLE_INTERAL') || die();
-
 if($hassiteconfig) {
     $externalpage = new admin_externalpage('local_qrlinks',
             get_string('pluginname', 'local_qrlinks'),
