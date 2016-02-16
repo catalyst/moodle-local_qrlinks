@@ -25,7 +25,7 @@
 require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
 
-//defined('MOODLE_INTERAL') || die();
+require_once('qrlinks_form.php');
 
 $courseid = optional_param('cid', -1, PARAM_INT);
 $moduleid = optional_param('cmid', -1, PARAM_INT);
@@ -68,6 +68,9 @@ if ($mform->is_cancelled()) {
     $data = $DB->get_records('local_qrlinks');
 
     echo '<pre>' . print_r($data, 1) . '</pre>';
+
+    $renderer = $PAGE->get_renderer('local_qrlinks');
+    echo $renderer->render_qrlinks_list($data);
 
     $mform->display();
 }
