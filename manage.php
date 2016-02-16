@@ -43,4 +43,15 @@ $PAGE->set_title('Basic page');
 $PAGE->set_heading('Heading');
 
 echo $OUTPUT->header();
+
+# https://docs.moodle.org/dev/Form_API
+$mform = new qrlinks_form();
+if ($mform->is_cancelled()) {
+
+} else if ($fromform = $mform->get_data()) {
+
+} else {
+    $mform->display();
+}
+
 echo $OUTPUT->footer();
