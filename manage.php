@@ -72,8 +72,8 @@ if ($mform->is_cancelled()) {
 
     $mform->display();
 
-    $data = $DB->get_records('local_qrlinks');
-    echo '<pre>' . print_r($data, 1) . '</pre>';
+    //$data = $DB->get_records('local_qrlinks');
+    //echo '<pre>' . print_r($data, 1) . '</pre>';
 }
 
 echo $OUTPUT->footer();
