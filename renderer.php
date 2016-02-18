@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 class local_qrlinks_renderer extends plugin_renderer_base {
     public function render_qrlinks_list($list) {
         $table = new html_table();
@@ -43,5 +45,6 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         $out = html_writer::table($table);
         return $out;
     }
+
 }
 

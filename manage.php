@@ -26,6 +26,7 @@ require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
 
 require_once('qrlinks_form.php');
+require_once('qrlinks_table.php');
 
 $courseid = optional_param('cid', -1, PARAM_INT);
 $moduleid = optional_param('cmid', -1, PARAM_INT);
@@ -41,6 +42,7 @@ $PAGE->set_url(new moodle_url('/local/qrlinks/manage.php'), array('cid' => $cour
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title('Basic page');
 $PAGE->set_heading('Heading');
+// $PAGE->navbar->add('QR Links management', new moodle_url('management.php'));
 
 echo $OUTPUT->header();
 
@@ -64,15 +66,14 @@ if ($mform->is_cancelled()) {
     $DB->insert_record('local_qrlinks', $data);
 
 } else {
-
-    $data = $DB->get_records('local_qrlinks');
-
-    echo '<pre>' . print_r($data, 1) . '</pre>';
-
-    $renderer = $PAGE->get_renderer('local_qrlinks');
-    echo $renderer->render_qrlinks_list($data);
+    //$renderer = $PAGE->get_renderer('local_qrlinks');
+    //echo $renderer->render_qrlinks_list($data);
+    qrlinks_table();
 
     $mform->display();
+
+    $data = $DB->get_records('local_qrlinks');
+    echo '<pre>' . print_r($data, 1) . '</pre>';
 }
 
 echo $OUTPUT->footer();
