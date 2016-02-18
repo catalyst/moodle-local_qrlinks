@@ -28,25 +28,24 @@ require_once($CFG->libdir . '/tablelib.php');
 
 function qrlinks_table() {
     global $DB, $PAGE;
-    $columns = array('name', 'description', 'url', 'createdby', 'timestamp');
 
     // TODO: lang strings
     $headers = array('QR link name', 'Description', 'URL', 'Created by', 'Date created');
 
+    $columns = array('name', 'description', 'url', 'createdby', 'timestamp');
+
     // Used for specifying the max pagination size.
     $qrlinkscount = $DB->count_records('local_qrlinks');
+
     $table = new flexible_table('local_qrlinks_table');
     $table->define_columns($columns);
     $table->define_headers($headers);
-    //$table->define_baseurl( new moodle_url('/local/qrlinks/manage.php'));
     $table->define_baseurl($PAGE->url);
     $table->set_attribute('id', 'qrlinkst');
     $table->set_attribute('class', 'generaltable admintable');
     $table->pageable(true);
     $table->pagesize(5, $qrlinkscount);
-    //$table->pagesize();
     $table->sortable(true);
-
     $table->setup();
 
     list($where, $params) = $table->get_sql_where();
@@ -73,8 +72,6 @@ function qrlinks_table() {
         }
     }
 
-    // deprecated
-    // $output = $table->print_html();
     $output = $table->finish_output();
     return $output;
 }
