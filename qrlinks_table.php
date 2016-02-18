@@ -33,6 +33,8 @@ function qrlinks_table() {
     // TODO: lang strings
     $headers = array('QR link name', 'Description', 'URL', 'Created by', 'Date created');
 
+    // Used for specifying the max pagination size.
+    $qrlinkscount = $DB->count_records('local_qrlinks');
     $table = new flexible_table('local_qrlinks_table');
     $table->define_columns($columns);
     $table->define_headers($headers);
@@ -41,6 +43,7 @@ function qrlinks_table() {
     $table->set_attribute('id', 'qrlinkst');
     $table->set_attribute('class', 'generaltable admintable');
     $table->pageable(true);
+    $table->pagesize(5, $qrlinkscount);
     //$table->pagesize();
     $table->sortable(true);
 
