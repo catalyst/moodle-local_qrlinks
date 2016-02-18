@@ -29,10 +29,18 @@ require_once($CFG->libdir . '/tablelib.php');
 function qrlinks_table() {
     global $DB, $PAGE;
 
-    // TODO: lang strings
-    $headers = array('QR link name', 'Description', 'URL', 'Created by', 'Date created');
+    $stredit   = get_string('edit');
+    $strdelete = get_string('delete');
 
-    $columns = array('name', 'description', 'url', 'createdby', 'timestamp');
+    $headers = array(get_string('table_header_name', 'local_qrlinks'),
+            get_string('table_header_description', 'local_qrlinks'),
+            get_string('table_header_url', 'local_qrlinks'),
+            get_string('table_header_createdby', 'local_qrlinks'),
+            get_string('table_header_datecreated', 'local_qrlinks'),
+            get_string('table_header_options', 'local_qrlinks')
+    );
+
+    $columns = array('name', 'description', 'url', 'createdby', 'timestamp', 'options');
 
     // Used for specifying the max pagination size.
     $qrlinkscount = $DB->count_records('local_qrlinks');

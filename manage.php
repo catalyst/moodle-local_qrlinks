@@ -40,8 +40,8 @@ $PAGE->set_context(context_system::instance());
 $PAGE->set_url(new moodle_url('/local/qrlinks/manage.php'), array('cid' => $courseid, 'cmid' => $moduleid));
 
 $PAGE->set_pagelayout('admin');
-$PAGE->set_title('Basic page');
-$PAGE->set_heading('Heading');
+$PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
+$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 // $PAGE->navbar->add('QR Links management', new moodle_url('management.php'));
 
 echo $OUTPUT->header();

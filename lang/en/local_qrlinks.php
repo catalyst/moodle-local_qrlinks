@@ -23,7 +23,14 @@
  */
 
 $string['pluginname'] = 'QR Links';
+$string['manage_page_heading'] = 'QR Links Management';
 $string['form_element_header'] = 'Generate QR link';
 $string['form_element_description'] = 'Description';
 $string['form_element_url'] = 'URL';
 $string['form_element_name'] = 'Name';
+$string['table_header_name'] = 'QR Name';
+$string['table_header_description'] = 'Description';
+$string['table_header_url'] = 'URL';
+$string['table_header_createdby'] = 'User';
+$string['table_header_datecreated'] = 'Date';
+$string['table_header_options'] = 'Options';
