@@ -48,25 +48,25 @@ function qrlinks_table() {
 
     list($where, $params) = $table->get_sql_where();
 
-    $query = "SELECT q.name, q.description, q.url, q.createdby, q.timestamp ".
-              "FROM {local_qrlinks} q ".
-              "$where";
+    $query = "SELECT q.id, q.name, q.description, q.url, q.createdby, q.timestamp,
+                     u.firstname, u.lastname, u.id AS uid
+                FROM {local_qrlinks} q
+                JOIN {user} u ON u.id = q.createdby
+                $where";
 
     $result = $DB->get_records_sql($query, $params, $table->get_page_start(), $table->get_page_size());
 
     if (!empty($result)) {
         foreach ($result as $entry) {
-            /*
+            $id = $entry->id;
             $name = $entry->name;
             $description = $entry->description;
             $url = $entry->url;
-            $createdby = $entry->createdby;
+            $createdby = $entry->firstname . " " . $entry->lastname;
             $timestamp = $entry->timestamp;
 
             $values = array($name, $description, $url, $createdby, $timestamp);
             $table->add_data($values);
-            */
-            $table->add_data_keyed($entry);
         }
     }
 
