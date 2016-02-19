@@ -69,11 +69,14 @@ function qrlinks_table() {
 
     if (!empty($result)) {
         foreach ($result as $entry) {
-            $options = '';
+            $buttons = array();
 
-            if(has_capability('local/qrlinks:createlinks', context_system::instance())) {
-                $options .= html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/delete'), 'alt'=>$strdelete, 'class'=>'iconsmall')), array('title'=>$strdelete));
-                $options .= html_writer::link(new moodle_url('', array('edit'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/edit'), 'alt'=>$stredit, 'class'=>'iconsmall')), array('title'=>$stredit));
+            if(has_capability('local/qrlinks:delete', context_system::instance())) {
+                $buttons[] = html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/delete'), 'alt'=>$strdelete, 'class'=>'iconsmall')), array('title'=>$strdelete));
+            }
+
+            if(has_capability('local/qrlinks:create', context_system::instance())) {
+                $buttons[] = html_writer::link(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/edit'), 'alt'=>$stredit, 'class'=>'iconsmall')), array('title'=>$stredit));
             }
 
             $id = $entry->id;
@@ -82,6 +85,7 @@ function qrlinks_table() {
             $url = $entry->url;
             $createdby = $entry->firstname . " " . $entry->lastname;
             $timestamp = $entry->timestamp;
+            $options = implode(' ', $buttons);
 
             $values = array($name, $description, $url, $createdby, $timestamp, $options);
             $table->add_data($values);
