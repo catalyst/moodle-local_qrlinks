@@ -36,9 +36,9 @@ $returnurl = new moodle_url('/local/qrlinks/manage.php');
 
 $sitecontext = context_system::instance();
 
-admin_externalpage_setup('local_qrlinks', '', null);
+// admin_externalpage_setup('local_qrlinks', '', null);
 
-//require_login();
+require_login();
 
 $PAGE->set_context($sitecontext);
 
@@ -47,7 +47,6 @@ $PAGE->set_url(new moodle_url('/local/qrlinks/manage.php'));
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
-// $PAGE->navbar->add('QR Links management', new moodle_url('management.php'));
 
 echo $OUTPUT->header();
 
