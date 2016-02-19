@@ -25,19 +25,24 @@
 require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
 
-require_once('qrlinks_form.php');
 require_once('qrlinks_table.php');
 
 $courseid = optional_param('cid', -1, PARAM_INT);
 $moduleid = optional_param('cmid', -1, PARAM_INT);
+$delete   = optional_param('delete', 0, PARAM_INT);
+$edit     = optional_param('edit', 0, PARAM_INT);
+
+$returnurl = new moodle_url('/local/qrlinks/manage.php');
+
+$sitecontext = context_system::instance();
 
 admin_externalpage_setup('local_qrlinks', '', null);
 
 //require_login();
 
-$PAGE->set_context(context_system::instance());
+$PAGE->set_context($sitecontext);
 
-$PAGE->set_url(new moodle_url('/local/qrlinks/manage.php'), array('cid' => $courseid, 'cmid' => $moduleid));
+$PAGE->set_url(new moodle_url('/local/qrlinks/manage.php'));
 
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
@@ -46,34 +51,30 @@ $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 echo $OUTPUT->header();
 
-# https://docs.moodle.org/dev/Form_API
-$mform = new qrlinks_form();
-if ($mform->is_cancelled()) {
+//if($delete && confirm_sesskey()) {
+if($delete) {
+    require_capability('local/qrlinks:delete', $sitecontext);
 
-} else if ($fromform = $mform->get_data()) {
-    $name = $fromform->name;
-    $description = $fromform->description;
-    $url = $fromform->url;
+    $qrlinkname = $DB->get_field('local_qrlinks', 'name', array('id' => $delete));
 
-    $data = array('name' => $name,
-            'description' => $description,
-            'url' => $url,
-            'createdby' => $USER->id,
-            'timestamp' => time());
+    //echo $OUTPUT->header();
+    //echo $OUTPUT->heading(get_string('deletelinkheader', 'local_qrlinks'));
 
-    echo '<pre>' . print_r($data, 1) . '</pre>';
+    $optionsyes = array('delete'=>$delete, 'confirm'=>md5($delete), 'sesskey'=>sesskey());
+    $deleteurl = new moodle_url($returnurl, $optionsyes);
+    $deletebutton = new single_button($deleteurl, get_string('delete'), 'post');
 
-    $DB->insert_record('local_qrlinks', $data);
+    echo $OUTPUT->confirm(get_string('deletelinkdescription', 'local_qrlinks', $qrlinkname), $deletebutton, $returnurl);
+    //echo $OUTPUT->footer();
+}
 
-} else {
-    //$renderer = $PAGE->get_renderer('local_qrlinks');
-    //echo $renderer->render_qrlinks_list($data);
-    qrlinks_table();
+qrlinks_table();
 
-    $mform->display();
+if (has_capability('local/qrlinks:create', $sitecontext)) {
+    $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => -1));
 
-    //$data = $DB->get_records('local_qrlinks');
-    //echo '<pre>' . print_r($data, 1) . '</pre>';
+    echo html_writer::empty_tag('br');
+    echo $OUTPUT->single_button($url, get_string('addnewlink', 'local_qrlinks'), 'get');
 }
 
 echo $OUTPUT->footer();
