@@ -34,3 +34,6 @@ $string['table_header_url'] = 'URL';
 $string['table_header_createdby'] = 'User';
 $string['table_header_datecreated'] = 'Date';
 $string['table_header_options'] = 'Options';
+$string['qrlinks:createlinks'] = 'Create QR links';
+$string['qrlinks:deletelinks'] = 'Delete QR links';
+$string['qrlinks:viewlinks'] = 'View a QR link';
