@@ -23,7 +23,7 @@
  */
 
 $capabilities = array(
-    'local/qrlinks:createlinks' => array (
+    'local/qrlinks:create' => array (
         'captype'       => 'write',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
@@ -36,7 +36,20 @@ $capabilities = array(
         )
     ),
 
-    'local/qrlinks:viewlinks' => array (
+    'local/qrlinks:delete' => array (
+        'captype'       => 'write',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'guest'          => CAP_PROHIBIT,
+            'user'           => CAP_PROHIBIT,
+            'student'        => CAP_PROHIBIT,
+            'teacher'        => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager'        => CAP_ALLOW
+        )
+    ),
+
+    'local/qrlinks:view' => array (
         'captype'       => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
