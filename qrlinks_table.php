@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/tablelib.php');
 
 function qrlinks_table() {
-    global $DB, $PAGE;
+    global $DB, $PAGE, $OUTPUT;
 
     $stredit   = get_string('edit');
     $strdelete = get_string('delete');
@@ -54,6 +54,7 @@ function qrlinks_table() {
     $table->pageable(true);
     $table->pagesize(5, $qrlinkscount);
     $table->sortable(true);
+    $table->no_sorting('options');
     $table->setup();
 
     list($where, $params) = $table->get_sql_where();
@@ -68,6 +69,14 @@ function qrlinks_table() {
 
     if (!empty($result)) {
         foreach ($result as $entry) {
+            // TODO: Check capability to edit QR links.
+            // TODO: Check capability to delete QR links.
+
+            $options = '';
+
+            $options .= html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/delete'), 'alt'=>$strdelete, 'class'=>'iconsmall')), array('title'=>$strdelete));
+            $options .= html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/edit'), 'alt'=>$stredit, 'class'=>'iconsmall')), array('title'=>$stredit));
+
             $id = $entry->id;
             $name = $entry->name;
             $description = $entry->description;
@@ -75,7 +84,7 @@ function qrlinks_table() {
             $createdby = $entry->firstname . " " . $entry->lastname;
             $timestamp = $entry->timestamp;
 
-            $values = array($name, $description, $url, $createdby, $timestamp);
+            $values = array($name, $description, $url, $createdby, $timestamp, $options);
             $table->add_data($values);
         }
     }
