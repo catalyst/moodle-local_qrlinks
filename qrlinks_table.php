@@ -73,7 +73,7 @@ function qrlinks_table() {
 
             if(has_capability('local/qrlinks:createlinks', context_system::instance())) {
                 $options .= html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/delete'), 'alt'=>$strdelete, 'class'=>'iconsmall')), array('title'=>$strdelete));
-                $options .= html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/edit'), 'alt'=>$stredit, 'class'=>'iconsmall')), array('title'=>$stredit));
+                $options .= html_writer::link(new moodle_url('', array('edit'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/edit'), 'alt'=>$stredit, 'class'=>'iconsmall')), array('title'=>$stredit));
             }
 
             $id = $entry->id;
