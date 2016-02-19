@@ -47,11 +47,11 @@ class qrlinks_form extends moodleform {
         $mform->addElement('text', 'name', get_string('form_element_name', 'local_qrlinks'), '');
         $mform->setType('name', PARAM_TEXT);
 
-        $mform->addElement('text', 'description', get_string('form_element_description', 'local_qrlinks'), '');
-        $mform->setType('description', PARAM_TEXT);
-
         $mform->addElement('text', 'url', get_string('form_element_url', 'local_qrlinks'), '');
         $mform->setType('url', PARAM_NOTAGS);
+
+        $mform->addElement('textarea', 'description', get_string('form_element_description', 'local_qrlinks'), '');
+        $mform->setType('description', PARAM_TEXT);
 
         $this->add_action_buttons();
     }
