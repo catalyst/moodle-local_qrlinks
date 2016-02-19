@@ -26,25 +26,46 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page
 }
 
-function local_qrlinks_extend_settings_navigation($settingsnav, $context) {
+function local_qrlinks_extend_navigation(global_navigation $nav) {
     global $CFG, $PAGE;
 
+    $courseid = $PAGE->course->id;
+
     // Only add this settings item on non-site course pages.
-    if(!$PAGE->course or $PAGE->course->id == 1) {
+    if(!$PAGE->course or $courseid == 1) {
+        return;
+    }
+
+    if ($coursenode = $PAGE->navigation->find($courseid, navigation_node::TYPE_COURSE)) {
+        $str = get_string('pluginname', 'local_qrlinks');
+        $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
+        $linknode = $coursenode->add($str, $url);
+        $linknode->make_active();
+    }
+
+}
+
+function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
+    global $CFG, $PAGE;
+
+    $courseid = $PAGE->course->id;
+
+    // Only add this settings item on non-site course pages.
+    if(!$PAGE->course or $courseid == 1) {
         return;
     }
 
     // https://docs.moodle.org/dev/Local_plugins
-    if ($settingsnode = $settingsnav->find('courseadmin', navigation_node::TYPE_COURSE)) {
+    if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
         $strfoo = get_string('pluginname', 'local_qrlinks');
-        $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $PAGE->course->id));
+        $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
         $foonode = navigation_node::create(
                 $strfoo,
                 $url,
                 navigation_node::NODETYPE_LEAF,
                 'qrlinks',
                 'qrlinks',
-                new pix_icon('t/addcontact', $strfoo)
+                new pix_icon('t/edit', $strfoo)
         );
 
         if ($PAGE->url->compare($url, URL_MATCH_BASE)) {
@@ -53,4 +74,5 @@ function local_qrlinks_extend_settings_navigation($settingsnav, $context) {
 
         $settingsnode->add_node($foonode);
     }
+
 }
