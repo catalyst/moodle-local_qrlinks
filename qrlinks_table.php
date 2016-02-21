@@ -28,7 +28,7 @@ if (!defined('MOODLE_INTERNAL')) {
 
 require_once($CFG->libdir . '/tablelib.php');
 
-function qrlinks_table() {
+function qrlinks_table($cid = null, $cmid = null) {
     global $DB, $PAGE, $OUTPUT;
 
     $stredit   = get_string('edit');
