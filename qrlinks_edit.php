@@ -25,6 +25,7 @@
 require_once('../../config.php');
 
 require_once('qrlinks_form.php');
+require_once('locallib.php');
 
 $id = optional_param('id', -1, PARAM_INT);
 
@@ -54,7 +55,7 @@ if ($mform->is_cancelled()) {
             'createdby' => $USER->id,
             'timestamp' => time());
 
-    $DB->insert_record('local_qrlinks', $data);
+    insert_qrlink($data);
 
     redirect($returnurl);
 }
