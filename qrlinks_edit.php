@@ -38,7 +38,6 @@ $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $returnurl = new moodle_url('/local/qrlinks/manage.php');
 
-# https://docs.moodle.org/dev/Form_API
 $mform = new qrlinks_form();
 
 if ($mform->is_cancelled()) {
@@ -60,7 +59,7 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 }
 
-if($id != -1) {
+if ($id != -1) {
     $data = $DB->get_record('local_qrlinks', array('id' => $id));
     $mform->set_data($data);
 }

@@ -23,28 +23,16 @@
  */
 
 if (!defined('MOODLE_INTERNAL')) {
-    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page
+    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
 require_once($CFG->libdir . '/formslib.php');
 
 class qrlinks_form extends moodleform {
-    function definition() {
+    public function definition() {
         $mform = $this->_form;
 
-        /*
-            id
-            name
-            description
-            url
-            courseid optional
-            cmid optional
-            createdby
-            create timestamp
-         */
-
         $mform->addElement('header', 'qrlink_header', get_string('form_element_header', 'local_qrlinks'), '');
-
 
         $mform->addElement('text', 'name', get_string('form_element_name', 'local_qrlinks'), '');
         $mform->setType('name', PARAM_TEXT);
@@ -58,7 +46,7 @@ class qrlinks_form extends moodleform {
         $this->add_action_buttons();
     }
 
-    function validation($data, $files) {
+    public function validation($data, $files) {
         $errors = parent::validation($data, $files);
 
         return $errors;

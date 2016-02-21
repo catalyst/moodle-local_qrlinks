@@ -23,7 +23,7 @@
  */
 
 if (!defined('MOODLE_INTERNAL')) {
-    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page
+    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
 require_once($CFG->libdir . '/tablelib.php');
@@ -73,12 +73,12 @@ function qrlinks_table() {
         foreach ($result as $entry) {
             $buttons = array();
 
-            if(has_capability('local/qrlinks:delete', context_system::instance())) {
-                $buttons[] = html_writer::link(new moodle_url('', array('delete'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/delete'), 'alt'=>$strdelete, 'class'=>'iconsmall')), array('title'=>$strdelete));
+            if (has_capability('local/qrlinks:delete', context_system::instance())) {
+                $buttons[] = html_writer::link(new moodle_url('', array('delete' => $entry->id, 'sesskey' => sesskey())), html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => $strdelete, 'class' => 'iconsmall')), array('title' => $strdelete));
             }
 
-            if(has_capability('local/qrlinks:create', context_system::instance())) {
-                $buttons[] = html_writer::link(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id'=>$entry->id, 'sesskey'=>sesskey())), html_writer::empty_tag('img', array('src'=>$OUTPUT->pix_url('t/edit'), 'alt'=>$stredit, 'class'=>'iconsmall')), array('title'=>$stredit));
+            if (has_capability('local/qrlinks:create', context_system::instance())) {
+                $buttons[] = html_writer::link(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $entry->id, 'sesskey' => sesskey())), html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/edit'), 'alt' => $stredit, 'class' => 'iconsmall')), array('title' => $stredit));
             }
 
             $id = $entry->id;

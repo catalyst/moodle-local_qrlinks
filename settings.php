@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-if($hassiteconfig) {
+if ($hassiteconfig) {
     $externalpage = new admin_externalpage('local_qrlinks',
             get_string('pluginname', 'local_qrlinks'),
             new moodle_url('/local/qrlinks/manage.php'));

@@ -23,7 +23,7 @@
  */
 
 if (!defined('MOODLE_INTERNAL')) {
-    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page
+    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
 function local_qrlinks_extend_navigation(global_navigation $nav) {
@@ -32,7 +32,7 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
     $courseid = $PAGE->course->id;
 
     // Only add this settings item on non-site course pages.
-    if(!$PAGE->course or $courseid == 1) {
+    if (!$PAGE->course or $courseid == 1) {
         return;
     }
 
@@ -51,7 +51,7 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
     $courseid = $PAGE->course->id;
 
     // Only add this settings item on non-site course pages.
-    if(!$PAGE->course or $courseid == 1) {
+    if (!$PAGE->course or $courseid == 1) {
         return;
     }
 
