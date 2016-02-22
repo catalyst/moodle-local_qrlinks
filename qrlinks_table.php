@@ -54,7 +54,7 @@ function qrlinks_table($cid = null, $cmid = null) {
     $table->set_attribute('id', 'qrlinkst');
     $table->set_attribute('class', 'generaltable admintable');
     $table->pageable(true);
-    $table->pagesize(5, $qrlinkscount);
+    $table->pagesize(10, $qrlinkscount);
     $table->sortable(true);
     $table->no_sorting('options');
     $table->setup();
