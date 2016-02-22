@@ -60,12 +60,14 @@ function qrlinks_table($cid = null, $cmid = null) {
     $table->setup();
 
     list($where, $params) = $table->get_sql_where();
+    $orderby = $table->get_sql_sort();
 
     $query = "SELECT q.id, q.name, q.description, q.url, q.createdby, q.timestamp,
                      u.firstname, u.lastname, u.id AS uid
                 FROM {local_qrlinks} q
                 JOIN {user} u ON u.id = q.createdby
-                $where";
+                $where
+                ORDER BY $orderby";
 
     $result = $DB->get_records_sql($query, $params, $table->get_page_start(), $table->get_page_size());
 
@@ -75,10 +77,8 @@ function qrlinks_table($cid = null, $cmid = null) {
 
             if (!empty($cid)) {
                 $cmidarray = array('cid' => $cid);
-
             } else if (!empty($cmid)) {
                 $cmidarray = array('cmid' => $cmid);
-
             }
 
             if (has_capability('local/qrlinks:delete', context_system::instance())) {
