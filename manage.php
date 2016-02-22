@@ -28,8 +28,6 @@ require_once($CFG->libdir . '/adminlib.php');
 require_once('qrlinks_table.php');
 require_once('locallib.php');
 
-require_login();
-
 // admin_externalpage_setup('local_qrlinks', '', null);
 
 $courseid = optional_param('cid', -1, PARAM_INT);
@@ -41,21 +39,26 @@ $confirm  = optional_param('confirm', '', PARAM_ALPHANUM);   // MD5 confirmation
 $returnurl = new moodle_url('/local/qrlinks/manage.php');
 
 if ($courseid > -1) {
+    require_login($courseid);
+
     $context = context_course::instance($courseid);
-    $PAGE->set_pagelayout('incourse');
     $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
     $PAGE->set_url($url);
-    //$PAGE->set_course($courseid);
+    $PAGE->set_pagelayout('incourse');
     $returnurl = $url;
 
 } else if ($moduleid > -1) {
+    require_login($courseid, false, $moduleid);
+
     $context = context_module::instance($moduleid);
-    $PAGE->set_pagelayout('incourse');
     $url = new moodle_url('/local/qrlinks/manage.php', array('cmid' => $moduleid));
     $PAGE->set_url($url);
+    $PAGE->set_pagelayout('incourse');
     $returnurl = $url;
 
 } else {
+    require_login();
+
     $context = context_system::instance();
     $PAGE->set_pagelayout('admin');
     $url = new moodle_url('/local/qrlinks/manage.php');
@@ -63,8 +66,6 @@ if ($courseid > -1) {
     $returnurl = $url;
 
 }
-
-require_login();
 
 $PAGE->set_context($context);
 

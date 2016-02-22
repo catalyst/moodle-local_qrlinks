@@ -26,7 +26,7 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
-function local_qrlinks_extend_navigation(global_navigation $nav) {
+function local_qrlinks_extend_course_navigation(global_navigation $nav) {
     global $CFG, $PAGE;
 
     $courseid = $PAGE->course->id;
@@ -40,10 +40,10 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
         $str = get_string('pluginname', 'local_qrlinks');
         $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
         $linknode = $coursenode->add($str, $url);
-        $linknode->make_active();
     }
 
 }
+
 
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $CFG, $PAGE;
@@ -69,7 +69,7 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
         );
 
         if ($PAGE->url->compare($url, URL_MATCH_BASE)) {
-            $foonode->made_active();
+            //$foonode->made_active();
         }
 
         $settingsnode->add_node($foonode);
