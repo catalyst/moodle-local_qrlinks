@@ -54,22 +54,31 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 
 } else if ($fromform = $mform->get_data()) {
+    $qrid = $fromform->id;
     $name = $fromform->name;
     $description = $fromform->description;
     $url = $fromform->url;
 
-    $data = array('name' => $name,
+    $data = array(
+            'id' => $qrid,
+            'name' => $name,
             'description' => $description,
             'url' => $url,
             'createdby' => $USER->id,
-            'timestamp' => time());
+            'timestamp' => time()
+    );
 
-    insert_qrlink($data);
+    if ($qrid > -1) {
+        update_qrlink($data);
+
+    } else {
+        insert_qrlink($data);
+    }
 
     redirect($returnurl);
 }
 
-if ($id != -1) {
+if ($id > -1) {
     $data = $DB->get_record('local_qrlinks', array('id' => $id));
     $mform->set_data($data);
 }
