@@ -26,7 +26,8 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
-function local_qrlinks_extend_course_navigation(global_navigation $nav) {
+/*
+function local_qrlinks_extend_navigation(global_navigation $nav) {
     global $CFG, $PAGE;
 
     $courseid = $PAGE->course->id;
@@ -37,43 +38,49 @@ function local_qrlinks_extend_course_navigation(global_navigation $nav) {
     }
 
     if ($coursenode = $PAGE->navigation->find($courseid, navigation_node::TYPE_COURSE)) {
-        $str = get_string('pluginname', 'local_qrlinks');
+        $str = get_string('nagivationlink', 'local_qrlinks');
         $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
         $linknode = $coursenode->add($str, $url);
     }
 
 }
-
+*/
 
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $CFG, $PAGE, $FULLME, $SESSION;
-    global $CFG, $PAGE;
 
     $courseid = $PAGE->course->id;
+    $linkparams = array('cid' => $courseid);
+
+    if ($PAGE->cm) {
+        $module = $PAGE->cm->id;
+        $linkparams = array('cid' => $courseid, 'cmid' => $module);
+    }
 
     // Only add this settings item on non-site course pages.
     if (!$PAGE->course or $courseid == 1) {
-        return;
+        //return;
     }
 
     // https://docs.moodle.org/dev/Local_plugins
     if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
-        $strfoo = get_string('pluginname', 'local_qrlinks');
-        $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
-        $foonode = navigation_node::create(
-                $strfoo,
+        $str = get_string('nagivationlink', 'local_qrlinks');
+        $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', $linkparams);
+        $node = navigation_node::create(
+                $str,
                 $url,
                 navigation_node::NODETYPE_LEAF,
                 'qrlinks',
                 'qrlinks',
-                new pix_icon('t/edit', $strfoo)
+                new pix_icon('t/edit', $str)
         );
 
         if ($PAGE->url->compare($url, URL_MATCH_BASE)) {
-            //$foonode->made_active();
+            $node->make_active();
         }
 
-        $settingsnode->add_node($foonode);
+        $settingsnode->add_node($node);
+
         // Keep track of the last page loaded.
         if (isset($SESSION->fullme) && $FULLME != $SESSION->fullme) {
             $SESSION->fullme = $FULLME;
