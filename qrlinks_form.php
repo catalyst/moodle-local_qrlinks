@@ -38,7 +38,7 @@ class qrlinks_form extends moodleform {
         $mform->setType('name', PARAM_TEXT);
 
         $mform->addElement('text', 'url', get_string('form_element_url', 'local_qrlinks'), '');
-        $mform->setType('url', PARAM_NOTAGS);
+        $mform->setType('url', PARAM_URL);
 
         $mform->addElement('textarea', 'description', get_string('form_element_description', 'local_qrlinks'), '');
         $mform->setType('description', PARAM_TEXT);
@@ -51,6 +51,12 @@ class qrlinks_form extends moodleform {
 
     public function validation($data, $files) {
         $errors = parent::validation($data, $files);
+
+        $url = filter_var($data['url'], FILTER_SANITIZE_URL);
+
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            $errors['url'] = 'invalid url';
+        }
 
         return $errors;
     }
