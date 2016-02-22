@@ -32,6 +32,13 @@ function insert_qrlink($data) {
     $DB->insert_record('local_qrlinks', $data);
 }
 
+function update_qrlink($data) {
+    global $DB;
+
+    $DB->update_record('local_qrlinks', $data);
+
+}
+
 function delete_qrlink($id) {
     global $DB;
 
