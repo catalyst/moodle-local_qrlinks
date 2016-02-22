@@ -23,6 +23,7 @@
  */
 
 $string['pluginname'] = 'QR Links';
+$string['nagivationlink'] = 'Create QR link';
 $string['manage_page_heading'] = 'QR Links Management';
 $string['form_element_header'] = 'Generate QR link';
 $string['form_element_description'] = 'Description';
@@ -37,6 +38,7 @@ $string['table_header_options'] = 'Options';
 $string['deletelinkheader'] = 'Delete QR Link';
 $string['deletelinkdescription'] = 'Are you absolutely sure you want to completely delete the QR Link \'{$a}\'?';
 $string['addnewlink'] = 'Add new QR Link';
+$string['invalidurl'] = 'Invalid URL';
 $string['qrlinks:createlinks'] = 'Create QR links';
 $string['qrlinks:deletelinks'] = 'Delete QR links';
 $string['qrlinks:viewlinks'] = 'View a QR link';
