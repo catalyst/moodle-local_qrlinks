@@ -45,7 +45,7 @@ if ($courseid > -1) {
     $PAGE->set_pagelayout('incourse');
     $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
     $PAGE->set_url($url);
-    $PAGE->set_course($courseid);
+    //$PAGE->set_course($courseid);
     $returnurl = $url;
 
 } else if ($moduleid > -1) {
@@ -105,7 +105,7 @@ echo $OUTPUT->header();
 qrlinks_table($courseid, $moduleid);
 
 if (has_capability('local/qrlinks:create', $context)) {
-    $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => -1));
+    $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
 
     echo html_writer::empty_tag('br');
     echo $OUTPUT->single_button($url, get_string('addnewlink', 'local_qrlinks'), 'get');
