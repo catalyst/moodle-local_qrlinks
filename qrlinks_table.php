@@ -73,12 +73,22 @@ function qrlinks_table($cid = null, $cmid = null) {
         foreach ($result as $entry) {
             $buttons = array();
 
+            if (!empty($cid)) {
+                $cmidarray = array('cid' => $cid);
+
+            } else if (!empty($cmid)) {
+                $cmidarray = array('cmid' => $cmid);
+
+            }
+
             if (has_capability('local/qrlinks:delete', context_system::instance())) {
-                $buttons[] = html_writer::link(new moodle_url('', array('delete' => $entry->id, 'sesskey' => sesskey())), html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => $strdelete, 'class' => 'iconsmall')), array('title' => $strdelete));
+                $url = new moodle_url('', array_merge(array('delete' => $entry->id, 'sesskey' => sesskey()), $cmidarray));
+                $buttons[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => $strdelete, 'class' => 'iconsmall')), array('title' => $strdelete));
             }
 
             if (has_capability('local/qrlinks:create', context_system::instance())) {
-                $buttons[] = html_writer::link(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $entry->id, 'sesskey' => sesskey())), html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/edit'), 'alt' => $stredit, 'class' => 'iconsmall')), array('title' => $stredit));
+                $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array_merge(array('id' => $entry->id, 'sesskey' => sesskey()), $cmidarray));
+                $buttons[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/edit'), 'alt' => $stredit, 'class' => 'iconsmall')), array('title' => $stredit));
             }
 
             $id = $entry->id;

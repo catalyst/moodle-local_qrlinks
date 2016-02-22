@@ -99,7 +99,7 @@ $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 echo $OUTPUT->header();
 
-qrlinks_table();
+qrlinks_table($courseid, $moduleid);
 
 if (has_capability('local/qrlinks:create', $context)) {
     $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => -1));
