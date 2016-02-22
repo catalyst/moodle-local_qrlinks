@@ -75,9 +75,10 @@ function qrlinks_table($cid = null, $cmid = null) {
         foreach ($result as $entry) {
             $buttons = array();
 
-            if (!empty($cid)) {
+            $cmidarray = array();
+            if ($cid > -1) {
                 $cmidarray = array('cid' => $cid);
-            } else if (!empty($cmid)) {
+            } else if ($cmid > -1) {
                 $cmidarray = array('cmid' => $cmid);
             }
 
