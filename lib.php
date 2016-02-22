@@ -26,26 +26,39 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
-/*
+
 function local_qrlinks_extend_navigation(global_navigation $nav) {
-    global $CFG, $PAGE;
+    global $CFG, $PAGE, $FULLME, $SESSION;
 
     $courseid = $PAGE->course->id;
 
     // Only add this settings item on non-site course pages.
     if (!$PAGE->course or $courseid == 1) {
-        return;
+        //return;
     }
 
-    if ($coursenode = $PAGE->navigation->find($courseid, navigation_node::TYPE_COURSE)) {
+    // Keep track of the last page loaded.
+    if (isset($SESSION->fullme) && $FULLME != $SESSION->fullme) {
+        $SESSION->fullme = $FULLME;
+    } else {
+        $SESSION->fullme = $FULLME;
+    }
+
+    /*
+    if ($coursenode = $nav->find('mydashboard', navigation_node::TYPE_CONTAINER)) {
         $str = get_string('nagivationlink', 'local_qrlinks');
         $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
         $linknode = $coursenode->add($str, $url);
     }
+    */
+
+    $str = get_string('nagivationlink', 'local_qrlinks');
+    $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
+    $linknode = $nav->add($str, $url);
 
 }
-*/
 
+/*
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $CFG, $PAGE, $FULLME, $SESSION;
 
@@ -59,10 +72,11 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
 
     // Only add this settings item on non-site course pages.
     if (!$PAGE->course or $courseid == 1) {
-        //return;
+        return;
     }
 
     // https://docs.moodle.org/dev/Local_plugins
+    // if ($settingsnode = $nav->find('siteadministration', navigation_node::TYPE_SITE_ADMIN)) {
     if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
         $str = get_string('nagivationlink', 'local_qrlinks');
         $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', $linkparams);
@@ -90,3 +104,4 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
     }
 
 }
+*/
