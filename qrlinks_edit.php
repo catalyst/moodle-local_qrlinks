@@ -27,7 +27,9 @@ require_once('../../config.php');
 require_once('qrlinks_form.php');
 require_once('locallib.php');
 
-$id = optional_param('id', -1, PARAM_INT);
+$id       = optional_param('id', -1, PARAM_INT);
+$courseid = optional_param('cid', -1, PARAM_INT);
+$moduleid = optional_param('cmid', -1, PARAM_INT);
 
 $sitecontext = context_system::instance();
 
@@ -37,7 +39,14 @@ $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
-$returnurl = new moodle_url('/local/qrlinks/manage.php');
+$array = array();
+if ($courseid > -1) {
+    $array = array('cid' => $courseid);
+} else if ($moduleid > -1) {
+    $array = array('cmid' => $moduleid);
+}
+
+$returnurl = new moodle_url('/local/qrlinks/manage.php', $array);
 
 $mform = new qrlinks_form();
 
