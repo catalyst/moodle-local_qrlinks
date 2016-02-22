@@ -43,10 +43,15 @@ $array = array();
 if ($courseid > -1) {
     $array = array('cid' => $courseid);
 } else if ($moduleid > -1) {
-    $array = array('cmid' => $moduleid);
+    $array = array('cid' => $courseid, 'cmid' => $moduleid);
 }
 
-$returnurl = new moodle_url('/local/qrlinks/manage.php', $array);
+//$returnurl = new moodle_url('/local/qrlinks/manage.php', $array);
+
+// TODO: instead of redirect to previous url, show qr code preview page, then goto last url.
+if (isset($SESSION->fullme)) {
+    $returnurl = $SESSION->fullme;
+}
 
 $mform = new qrlinks_form();
 
