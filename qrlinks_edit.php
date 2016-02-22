@@ -49,8 +49,10 @@ if ($courseid > -1) {
 //$returnurl = new moodle_url('/local/qrlinks/manage.php', $array);
 
 // TODO: instead of redirect to previous url, show qr code preview page, then goto last url.
+$fromurl = '';
 if (isset($SESSION->fullme)) {
     $returnurl = $SESSION->fullme;
+    $fromurl = $SESSION->fullme;
 }
 
 $mform = new qrlinks_form();
@@ -83,8 +85,12 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 }
 
+// The data will be populated from an existing record.
 if ($id > -1) {
     $data = $DB->get_record('local_qrlinks', array('id' => $id));
+    $mform->set_data($data);
+} else {
+    $data['url'] = $fromurl;
     $mform->set_data($data);
 }
 
