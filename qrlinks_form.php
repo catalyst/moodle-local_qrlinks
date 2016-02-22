@@ -55,7 +55,7 @@ class qrlinks_form extends moodleform {
         $url = filter_var($data['url'], FILTER_SANITIZE_URL);
 
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            $errors['url'] = 'invalid url';
+            $errors['url'] = get_string('invalidurl', 'local_qrlinks');
         }
 
         return $errors;
