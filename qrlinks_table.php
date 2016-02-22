@@ -66,8 +66,11 @@ function qrlinks_table($cid = null, $cmid = null) {
                      u.firstname, u.lastname, u.id AS uid
                 FROM {local_qrlinks} q
                 JOIN {user} u ON u.id = q.createdby
-                $where
-                ORDER BY $orderby";
+                $where";
+
+    if (!empty($orderby)) {
+        $query .= "ORDER BY $orderby";
+    }
 
     $result = $DB->get_records_sql($query, $params, $table->get_page_start(), $table->get_page_size());
 
