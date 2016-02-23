@@ -27,6 +27,14 @@ if (!defined('MOODLE_INTERNAL')) {
 }
 
 class local_qrlinks_renderer extends plugin_renderer_base {
+
+    public function render_qrlinks_helper($data) {
+        print_object($data);
+
+        // Will included an <img src="data:image/png;base64,... /> to be visible.
+        require_once('qr.php');
+
+    }
     public function render_qrlinks_list($list) {
         $table = new html_table();
 
