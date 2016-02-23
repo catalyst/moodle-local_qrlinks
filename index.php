@@ -36,7 +36,7 @@ $PAGE->set_context($sitecontext);
 $PAGE->set_pagelayout('embedded');
 
 $PAGE->set_title(get_string('previewlabel', 'local_qrlinks'));
-$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+//$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $renderer = $PAGE->get_renderer('local_qrlinks');
 
