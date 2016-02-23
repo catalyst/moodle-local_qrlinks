@@ -93,8 +93,13 @@ if ($id > -1) {
     $data = $DB->get_record('local_qrlinks', array('id' => $id));
     $mform->set_data($data);
 } else {
-    $data['url'] = $refererurl;
-    $mform->set_data($data);
+
+    // Do not populate the URL field if we just arrived from the manage.php page.
+    $re = "/local\\/qrlinks\\/manage\\.php/";
+    if(!preg_match($re, $refererurl, $matches)) {
+        $data['url'] = $refererurl;
+        $mform->set_data($data);
+    }
 }
 
 echo $OUTPUT->header();
