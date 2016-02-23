@@ -23,8 +23,11 @@
  */
 
 require_once('../../config.php');
+require_once('renderer.php');
 
 $id = required_param('id', PARAM_INT);
+
+$data = $DB->get_record('local_qrlinks', array('id' => $id));
 
 $PAGE->set_url(new moodle_url('/local/qrlinks/index.php', array('id' => $id)));
 
@@ -35,13 +38,12 @@ $PAGE->set_pagelayout('embedded');
 $PAGE->set_title(get_string('previewlabel', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
-$data = $DB->get_record('local_qrlinks', array('id' => $id));
+$renderer = $PAGE->get_renderer('local_qrlinks');
 
 echo $OUTPUT->header();
 
 if(!empty($data)) {
-    print_object($data);
-    require_once('qrlink.php');
+    $renderer->render_qrlinks_helper($data);
 }
 
 echo $OUTPUT->footer();
