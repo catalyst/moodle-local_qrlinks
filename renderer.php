@@ -26,10 +26,30 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
+/**
+ * Renderer for QR links.
+ *
+ * This provides an additional enrolment key field that will be validated upon signup.
+ *
+ * @copyright  2016 Nicholas Hoobin (nicholashoobin@catalyst-au.net)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class local_qrlinks_renderer extends plugin_renderer_base {
 
+    /**
+     * Render the QR helper block.
+     * @param array $data
+     */
     public function render_qrlinks_helper($data) {
         print_object($data);
+
+        $content = $data->name . ' ' . ' ' . $data->description;
+
+        $header = html_writer::div($content);
+        $description = html_writer::div($content);
+        // $out .= html_writer::
+
+        echo $header;
 
         // Will included an <img src="data:image/png;base64,... /> to be visible.
         require_once('qr.php');

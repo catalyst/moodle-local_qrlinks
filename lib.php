@@ -26,6 +26,12 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
+/**
+ * Extends the navigation block and adds a new node 'Create QR link'. This is visible if the current
+ * user has the local/qrlinks:create capability.
+ *
+ * @param global_navigation $nav
+ */
 function local_qrlinks_extend_navigation(global_navigation $nav) {
     global $CFG, $PAGE, $FULLME, $SESSION;
 
@@ -44,9 +50,15 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
         $linknode = $nav->add($str, $url);
     }
 
-
 }
 
+/**
+ * Extends the settings navigation and adds a new node 'Create QR link'. This is visible if the current
+ * user has the local/qrlinks:create capability.
+ *
+ * @param settings_navigation $nav
+ * @param context $context
+ */
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $CFG, $PAGE, $FULLME, $SESSION;
 

@@ -28,6 +28,12 @@ if (!defined('MOODLE_INTERNAL')) {
 
 require_once($CFG->libdir . '/tablelib.php');
 
+/**
+ * Creates a table using tablelib.php to show a list of QR codes that have been generated.
+ *
+ * @param int $cid course id
+ * @param int $cmid course module id
+ */
 function qrlinks_table($cid = null, $cmid = null) {
     global $DB, $PAGE, $OUTPUT;
 

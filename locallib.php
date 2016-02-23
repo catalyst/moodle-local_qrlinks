@@ -26,12 +26,21 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
+/**
+ * Helper function to insert a QR link record.
+ * @param stdClass $data
+ */
 function insert_qrlink($data) {
     global $DB;
 
     $DB->insert_record('local_qrlinks', $data);
 }
 
+
+/**
+ * Helper function to update a QR link record.
+ * @param stdClass $data
+ */
 function update_qrlink($data) {
     global $DB;
 
@@ -39,6 +48,11 @@ function update_qrlink($data) {
 
 }
 
+
+/**
+ * Helper function to delete a QR link record.
+ * @param int $id
+ */
 function delete_qrlink($id) {
     global $DB;
 
