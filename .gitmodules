@@ -1,0 +1,3 @@
+[submodule "thirdparty/QrCode"]
+	path = thirdparty/QrCode
+	url = https://github.com/endroid/QrCode.git
