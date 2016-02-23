@@ -32,7 +32,7 @@ $sitecontext = context_system::instance();
 $PAGE->set_context($sitecontext);
 $PAGE->set_pagelayout('embedded');
 
-$PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
+$PAGE->set_title(get_string('previewlabel', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $data = $DB->get_record('local_qrlinks', array('id' => $id));

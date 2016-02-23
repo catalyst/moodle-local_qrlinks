@@ -46,7 +46,7 @@ class qrlinks_form extends moodleform {
         $mform->addElement('hidden', 'id', -1);
         $mform->setType('id', PARAM_INT);
 
-        $submitlabel = get_string('previewlabel', 'local_qrlinks');
+        $submitlabel = get_string('createlabel', 'local_qrlinks');
 
         $this->add_action_buttons(true, $submitlabel);
 
