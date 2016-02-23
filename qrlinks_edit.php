@@ -31,29 +31,30 @@ $id       = optional_param('id', -1, PARAM_INT);
 $courseid = optional_param('cid', -1, PARAM_INT);
 $moduleid = optional_param('cmid', -1, PARAM_INT);
 
-$sitecontext = context_system::instance();
+// Cleaning up the URL, not adding parameters to the end of the address if the page is called by itself.
+if($id > -1) {
+    $PAGE->set_url(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $id)));
+} else {
+    $PAGE->set_url(new moodle_url('/local/qrlinks/qrlinks_edit.php'));
+}
 
+$sitecontext = context_system::instance();
 $PAGE->set_context($sitecontext);
-$PAGE->set_url(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $id)));
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
+/*
 $array = array();
 if ($courseid > -1) {
     $array = array('cid' => $courseid);
 } else if ($moduleid > -1) {
     $array = array('cid' => $courseid, 'cmid' => $moduleid);
 }
+*/
 
-//$returnurl = new moodle_url('/local/qrlinks/manage.php', $array);
-
-// TODO: instead of redirect to previous url, show qr code preview page, then goto last url.
-$fromurl = '';
-if (isset($SESSION->fullme)) {
-    $returnurl = $SESSION->fullme;
-    $fromurl = $SESSION->fullme;
-}
+$refererurl = $_SERVER['HTTP_REFERER'];
+$returnurl = new moodle_url('/local/qrlinks/manage.php');
 
 $mform = new qrlinks_form();
 
@@ -75,9 +76,11 @@ if ($mform->is_cancelled()) {
             'timestamp' => time()
     );
 
+    // Update the QR link with a known ID
     if ($qrid > -1) {
         update_qrlink($data);
 
+    // Insert a QR link when the ID is unset or -1.
     } else {
         insert_qrlink($data);
     }
@@ -90,7 +93,7 @@ if ($id > -1) {
     $data = $DB->get_record('local_qrlinks', array('id' => $id));
     $mform->set_data($data);
 } else {
-    $data['url'] = $fromurl;
+    $data['url'] = $refererurl;
     $mform->set_data($data);
 }
 

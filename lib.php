@@ -37,13 +37,6 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
         //return;
     }
 
-    // Keep track of the last page loaded.
-    if (isset($SESSION->fullme) && $FULLME != $SESSION->fullme) {
-        $SESSION->fullme = $FULLME;
-    } else {
-        $SESSION->fullme = $FULLME;
-    }
-
     /*
     if ($coursenode = $nav->find('mydashboard', navigation_node::TYPE_CONTAINER)) {
         $str = get_string('nagivationlink', 'local_qrlinks');
