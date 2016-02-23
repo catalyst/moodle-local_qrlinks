@@ -23,6 +23,7 @@
  */
 
 require_once('../../config.php');
+global $DB;
 
 use Endroid\QrCode\QrCode;
 require_once("thirdparty/QrCode/src/QrCode.php");
@@ -35,8 +36,6 @@ $data = $data->url;
 
 $data = new moodle_url('/local/qrlinks/in.php', array('id' => $qrid));
 
-//header('Content-Type: image/png');
-
 $code = new QrCode();
 $code
     ->setText($data)
@@ -46,6 +45,5 @@ $code
     ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
     ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
     ->setLabelFontSize(16);
-    //->render();
 
 echo '<img src="' .$code->getDataUri() . '" />';
