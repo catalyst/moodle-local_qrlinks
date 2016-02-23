@@ -26,7 +26,6 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
-
 function local_qrlinks_extend_navigation(global_navigation $nav) {
     global $CFG, $PAGE, $FULLME, $SESSION;
 
@@ -51,7 +50,6 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 
 }
 
-/*
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $CFG, $PAGE, $FULLME, $SESSION;
 
