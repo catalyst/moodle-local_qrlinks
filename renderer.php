@@ -41,19 +41,20 @@ class local_qrlinks_renderer extends plugin_renderer_base {
      * @param array $data
      */
     public function render_qrlinks_helper($data) {
-        print_object($data);
+        $headtext  = html_writer::start_tag('h2');
+        $headtext .= $data->name;
+        $headtext .= html_writer::end_tag('h2');
+        $headdiv = html_writer::div($headtext, 'qrheader');
 
-        $content = $data->name . ' ' . ' ' . $data->description;
+        $desctext = $data->description;
+        $descdiv = html_writer::div($desctext, 'qrdescription');
 
-        $header = html_writer::div($content);
-        $description = html_writer::div($content);
-        // $out .= html_writer::
-
-        echo $header;
+        echo $headdiv;
 
         // Will included an <img src="data:image/png;base64,... /> to be visible.
         require_once('qr.php');
 
+        echo $descdiv;
     }
 
     /*
