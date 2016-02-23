@@ -88,13 +88,7 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
 
         $settingsnode->add_node($node);
 
-        // Keep track of the last page loaded.
-        if (isset($SESSION->fullme) && $FULLME != $SESSION->fullme) {
-            $SESSION->fullme = $FULLME;
-        } else {
-            $SESSION->fullme = $FULLME;
-        }
     }
 
 }
-*/
+
