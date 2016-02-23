@@ -21,3 +21,31 @@
  * @copyright  2016 Nicholas Hoobin <nicholashoobin@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+require_once('../../config.php');
+
+use Endroid\QrCode\QrCode;
+require_once("thirdparty/QrCode/src/QrCode.php");
+
+$qrid = required_param('id', PARAM_INT);
+
+$data = $DB->get_record('local_qrlinks', array('id' => $qrid));
+
+$data = $data->url;
+
+$data = new moodle_url('/local/qrlinks/in.php', array('id' => $qrid));
+
+//header('Content-Type: image/png');
+
+$code = new QrCode();
+$code
+    ->setText($data)
+    ->setSize(300)
+    ->setPadding(6)
+    ->setErrorCorrection('high')
+    ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
+    ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
+    ->setLabelFontSize(16);
+    //->render();
+
+echo '<img src="' .$code->getDataUri() . '" />';
