@@ -113,7 +113,7 @@ function qrlinks_table($cid = null, $cmid = null) {
 
             $id = $entry->id;
             $name = $entry->name;
-            $description = $entry->description;
+            $description = htmlspecialchars($entry->description);
             $url = $entry->url;
             $createdby = $entry->firstname . " " . $entry->lastname;
             $timestamp = $entry->timestamp;

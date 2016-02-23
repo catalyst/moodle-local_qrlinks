@@ -65,7 +65,7 @@ class qrlinks_form extends moodleform {
         $mform->setType('name', PARAM_TEXT);
 
         $mform->addElement('textarea', 'description', get_string('form_element_description', 'local_qrlinks'), 'cols="50"');
-        $mform->setType('description', PARAM_TEXT);
+        $mform->setType('description', PARAM_RAW);
 
         // Hidden id field.
         $mform->addElement('hidden', 'id', -1);
