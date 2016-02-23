@@ -37,10 +37,11 @@ $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $data = $DB->get_record('local_qrlinks', array('id' => $id));
 
-
 echo $OUTPUT->header();
 
-print_object($data);
-require_once('qrlink.php');
+if(!empty($data)) {
+    print_object($data);
+    require_once('qrlink.php');
+}
 
 echo $OUTPUT->footer();
