@@ -32,7 +32,7 @@ $courseid = optional_param('cid', -1, PARAM_INT);
 $moduleid = optional_param('cmid', -1, PARAM_INT);
 
 // Cleaning up the URL, not adding parameters to the end of the address if the page is called by itself.
-if($id > -1) {
+if ($id > -1) {
     $PAGE->set_url(new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $id)));
 } else {
     $PAGE->set_url(new moodle_url('/local/qrlinks/qrlinks_edit.php'));
@@ -76,12 +76,11 @@ if ($mform->is_cancelled()) {
             'timestamp' => time()
     );
 
-    // Update the QR link with a known ID
     if ($qrid > -1) {
+        // Update the QR link with a known ID.
         update_qrlink($data);
-
-    // Insert a QR link when the ID is unset or -1.
     } else {
+        // Insert a QR link when the ID is unset or -1.
         insert_qrlink($data);
     }
 
@@ -96,7 +95,7 @@ if ($id > -1) {
 
     // Do not populate the URL field if we just arrived from the manage.php page.
     $re = "/local\\/qrlinks\\/manage\\.php/";
-    if(!preg_match($re, $refererurl, $matches)) {
+    if (!preg_match($re, $refererurl, $matches)) {
         $data['url'] = $refererurl;
         $mform->set_data($data);
     }

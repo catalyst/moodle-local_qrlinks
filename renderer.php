@@ -35,6 +35,8 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         require_once('qr.php');
 
     }
+
+    /*
     public function render_qrlinks_list($list) {
         $table = new html_table();
 
@@ -55,6 +57,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         $out = html_writer::table($table);
         return $out;
     }
+    */
 
 }
 

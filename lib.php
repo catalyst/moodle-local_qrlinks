@@ -32,9 +32,11 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
     $courseid = $PAGE->course->id;
 
     // Only add this settings item on non-site course pages.
+    /*
     if (!$PAGE->course or $courseid == 1) {
-        //return;
+        return;
     }
+    */
 
     if (has_capability('local/qrlinks:create', context_system::instance())) {
         $str = get_string('nagivationlink', 'local_qrlinks');

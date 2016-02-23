@@ -89,17 +89,20 @@ function qrlinks_table($cid = null, $cmid = null) {
             // Delete button.
             if (has_capability('local/qrlinks:delete', context_system::instance())) {
                 $url = new moodle_url('', array_merge(array('delete' => $entry->id, 'sesskey' => sesskey()), $cmidarray));
-                $buttons[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => $strdelete, 'class' => 'iconsmall')), array('title' => $strdelete));
+                $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => $strdelete, 'class' => 'iconsmall'));
+                $buttons[] = html_writer::link($url, $html, array('title' => $strdelete));
             }
 
             // Preview button for viewing the generated QR link information page.
             $url = new moodle_url('/local/qrlinks/index.php', array('id' => $entry->id));
-            $buttons[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/hide'), 'alt' => $strpreview, 'class' => 'iconsmall')), array('title' => $strpreview));
+            $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/hide'), 'alt' => $strpreview, 'class' => 'iconsmall'));
+            $buttons[] = html_writer::link($url, $html, array('title' => $strpreview));
 
             // Edit button.
             if (has_capability('local/qrlinks:create', context_system::instance())) {
                 $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array_merge(array('id' => $entry->id, 'sesskey' => sesskey()), $cmidarray));
-                $buttons[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/edit'), 'alt' => $stredit, 'class' => 'iconsmall')), array('title' => $stredit));
+                $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/edit'), 'alt' => $stredit, 'class' => 'iconsmall'));
+                $buttons[] = html_writer::link($url, $html, array('title' => $stredit));
             }
 
             $id = $entry->id;

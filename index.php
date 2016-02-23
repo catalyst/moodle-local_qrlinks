@@ -42,7 +42,7 @@ $renderer = $PAGE->get_renderer('local_qrlinks');
 
 echo $OUTPUT->header();
 
-if(!empty($data)) {
+if (!empty($data)) {
     $renderer->render_qrlinks_helper($data);
 }
 
