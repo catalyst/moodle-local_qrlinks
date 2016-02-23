@@ -36,17 +36,12 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
         //return;
     }
 
-    /*
-    if ($coursenode = $nav->find('mydashboard', navigation_node::TYPE_CONTAINER)) {
+    if (has_capability('local/qrlinks:create', context_system::instance())) {
         $str = get_string('nagivationlink', 'local_qrlinks');
-        $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
-        $linknode = $coursenode->add($str, $url);
+        $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
+        $linknode = $nav->add($str, $url);
     }
-    */
 
-    $str = get_string('nagivationlink', 'local_qrlinks');
-    $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
-    $linknode = $nav->add($str, $url);
 
 }
 
@@ -84,7 +79,9 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
             $node->make_active();
         }
 
-        $settingsnode->add_node($node);
+        if (has_capability('local/qrlinks:create', context_system::instance())) {
+            $settingsnode->add_node($node);
+        }
 
     }
 
