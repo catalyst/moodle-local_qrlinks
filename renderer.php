@@ -29,8 +29,6 @@ if (!defined('MOODLE_INTERNAL')) {
 /**
  * Renderer for QR links.
  *
- * This provides an additional enrolment key field that will be validated upon signup.
- *
  * @copyright  2016 Nicholas Hoobin (nicholashoobin@catalyst-au.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -56,29 +54,5 @@ class local_qrlinks_renderer extends plugin_renderer_base {
 
         echo $descdiv;
     }
-
-    /*
-    public function render_qrlinks_list($list) {
-        $table = new html_table();
-
-        $table->head = array('Name', 'Description', 'Url', 'Options');
-
-        foreach ($list as $qr) {
-            $row = new html_table_row();
-
-            $namecell = new html_table_cell($qr->name);
-            $descriptioncell = new html_table_cell($qr->description);
-            $urlcell = new html_table_cell($qr->url);
-
-            $row->cells = array($namecell, $descriptioncell, $urlcell);
-
-            $table->data[] = $row;
-        }
-
-        $out = html_writer::table($table);
-        return $out;
-    }
-    */
-
 }
 

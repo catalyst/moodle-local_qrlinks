@@ -35,8 +35,6 @@ if (!defined('MOODLE_INTERNAL')) {
 function local_qrlinks_extend_navigation(global_navigation $nav) {
     global $PAGE, $DB;
 
-    // $courseid = $PAGE->course->id;
-
     if (has_capability('local/qrlinks:create', $PAGE->context)) {
         $currentpage = $PAGE->url->out();
 
@@ -49,25 +47,28 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
         // If this is true, then a QR link has already been assigned to this page.
         $qrlink = $DB->get_record_sql($query, $params, IGNORE_MULTIPLE);
 
+        // TODO: If more than one link found, have intermediate page showing results and selection to edit.
+
         $re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
         if (preg_match($re, $currentpage, $matches)) {
+            // We are in the edit/management page, lets show a link back to management.
             $str = get_string('managelink', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/manage.php');
             $linknode = $nav->add($str, $url);
 
         } else if (empty($qrlink)) {
+            // No QR link found, lets make a Create Link.
             $str = get_string('nagivationlink', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
             $linknode = $nav->add($str, $url);
         } else {
-            // We will edit the existing link
+            // QR link found, time for an Edit link.
             $id = $qrlink->id;
             $str = get_string('nagivationeditlink', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $id));
             $linknode = $nav->add($str, $url);
         }
     }
-
 }
 
 /**
