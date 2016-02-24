@@ -105,8 +105,8 @@ if ($id > -1) {
     $mform->set_data($data);
 } else {
 
-    // Do not populate the URL field if we just arrived from the manage.php page.
-    $re = "/local\\/qrlinks\\/manage\\.php/";
+    // Do not populate the URL field if we just arrived from the manage.php/qrlinks_edit.php page.
+    $re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
     if (!preg_match($re, $refererurl, $matches)) {
         $data['url'] = $refererurl;
         $mform->set_data($data);
