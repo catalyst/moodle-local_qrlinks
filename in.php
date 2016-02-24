@@ -21,3 +21,19 @@
  * @copyright  2016 Nicholas Hoobin <nicholashoobin@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+require_once('../../config.php');
+require_once($CFG->libdir . '/accesslib.php');
+global $DB;
+
+if (!isloggedin()) {
+    authenticate_user_login('guest', 'guest');
+}
+
+$id = required_param('id', PARAM_INT);
+
+$data = $DB->get_record('local_qrlinks', array('id' => $id));
+
+$url = $data->url;
+
+redirect($url);
