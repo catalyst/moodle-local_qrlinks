@@ -36,7 +36,6 @@ function insert_qrlink($data) {
     $DB->insert_record('local_qrlinks', $data);
 }
 
-
 /**
  * Helper function to update a QR link record.
  * @param stdClass $data
@@ -47,7 +46,6 @@ function update_qrlink($data) {
     $DB->update_record('local_qrlinks', $data);
 
 }
-
 
 /**
  * Helper function to delete a QR link record.

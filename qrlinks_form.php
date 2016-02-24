@@ -55,7 +55,6 @@ class qrlinks_form extends moodleform {
 
         // Public fields.
         $mform->addElement('header', 'qrlink_header', get_string('form_element_public_header', 'local_qrlinks'), '');
-
         $mform->addElement('static', 'public_help', '', get_string('public_field_help', 'local_qrlinks'));
 
         $mform->addElement('text', 'url', get_string('form_element_url', 'local_qrlinks'), 'size="50"');
