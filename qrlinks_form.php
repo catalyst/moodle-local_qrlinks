@@ -89,10 +89,12 @@ class qrlinks_form extends moodleform {
     public function validation($data, $files) {
         $errors = parent::validation($data, $files);
 
-        $url = filter_var($data['url'], FILTER_SANITIZE_URL);
+        if ($data['url']) {
+            $url = filter_var($data['url'], FILTER_SANITIZE_URL);
 
-        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            $errors['url'] = get_string('invalidurl', 'local_qrlinks');
+            if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+                $errors['url'] = get_string('invalidurl', 'local_qrlinks');
+            }
         }
 
         return $errors;
