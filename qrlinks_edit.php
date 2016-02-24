@@ -38,6 +38,8 @@ if ($id > -1) {
     $PAGE->set_url(new moodle_url('/local/qrlinks/qrlinks_edit.php'));
 }
 
+require_login();
+
 $sitecontext = context_system::instance();
 $PAGE->set_context($sitecontext);
 $PAGE->set_pagelayout('admin');
@@ -75,18 +77,18 @@ if ($mform->is_cancelled()) {
 
 } else if ($fromform = $mform->get_data()) {
     $qrid = $fromform->id;
-    $adminname = $fromform->admin_name;
-    $admindescription = $fromform->admin_description;
-    $name = $fromform->name;
-    $description = $fromform->description;
+    $privatename = $fromform->private_name;
+    $privatedescription = $fromform->private_description['text'];
+    $publicname = $fromform->public_name;
+    $publicdescription = $fromform->public_description['text'];
     $url = $fromform->url;
 
     $data = array(
             'id' => $qrid,
-            'admin_name' => $adminname,
-            'admin_description' => $admindescription,
-            'name' => $name,
-            'description' => $description,
+            'private_name' => $privatename,
+            'private_description' => $privatedescription,
+            'public_name' => $publicname,
+            'private_description' => $publicdescription,
             'url' => $url,
             'createdby' => $USER->id,
             'timestamp' => time()

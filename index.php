@@ -24,6 +24,7 @@
 
 require_once('../../config.php');
 require_once('renderer.php');
+global $DB;
 
 $id = required_param('id', PARAM_INT);
 
@@ -35,8 +36,8 @@ $sitecontext = context_system::instance();
 $PAGE->set_context($sitecontext);
 $PAGE->set_pagelayout('embedded');
 
-$PAGE->set_title(get_string('previewlabel', 'local_qrlinks'));
-//$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+$PAGE->set_title(get_string('preview_label', 'local_qrlinks'));
+// $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $renderer = $PAGE->get_renderer('local_qrlinks');
 

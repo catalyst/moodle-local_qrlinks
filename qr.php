@@ -37,13 +37,12 @@ $data = $data->url;
 $data = new moodle_url('/local/qrlinks/in.php', array('id' => $qrid));
 
 $code = new QrCode();
-$code
-    ->setText($data)
-    ->setSize(300)
-    ->setPadding(6)
-    ->setErrorCorrection('high')
-    ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
-    ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
-    ->setLabelFontSize(16);
+$code->setText($data);
+$code->setSize(300);
+$code->setPadding(6);
+$code->setErrorCorrection('high');
+$code->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0));
+$code->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0));
+$code->setLabelFontSize(16);
 
 echo '<img src="' .$code->getDataUri() . '" />';

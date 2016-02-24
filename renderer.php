@@ -40,11 +40,11 @@ class local_qrlinks_renderer extends plugin_renderer_base {
      */
     public function render_qrlinks_helper($data) {
         $headtext  = html_writer::start_tag('h2');
-        $headtext .= $data->name;
+        $headtext .= $data->public_name;
         $headtext .= html_writer::end_tag('h2');
         $headdiv = html_writer::div($headtext, 'qrheader');
 
-        $desctext = $data->description;
+        $desctext = $data->public_description;
         $descdiv = html_writer::div($desctext, 'qrdescription');
 
         echo $headdiv;

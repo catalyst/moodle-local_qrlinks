@@ -39,19 +39,17 @@ function qrlinks_table($cid = null, $cmid = null) {
 
     $stredit    = get_string('edit');
     $strdelete  = get_string('delete');
-    $strpreview = get_string('preview', 'local_qrlinks');
+    $strpreview = get_string('table_preview', 'local_qrlinks');
 
-    $headers = array(get_string('table_header_admin_name', 'local_qrlinks'),
-            get_string('table_header_admin_description', 'local_qrlinks'),
-            get_string('table_header_name', 'local_qrlinks'),
-            get_string('table_header_description', 'local_qrlinks'),
+    $headers = array(get_string('table_header_private_name', 'local_qrlinks'),
+            get_string('table_header_private_description', 'local_qrlinks'),
             get_string('table_header_url', 'local_qrlinks'),
             get_string('table_header_createdby', 'local_qrlinks'),
             get_string('table_header_datecreated', 'local_qrlinks'),
             get_string('table_header_options', 'local_qrlinks')
     );
 
-    $columns = array('admin_name', 'admin_description', 'name', 'description', 'url', 'createdby', 'timestamp', 'options');
+    $columns = array('private_name', 'private_description', 'url', 'createdby', 'timestamp', 'options');
 
     // Used for specifying the max pagination size.
     $qrlinkscount = $DB->count_records('local_qrlinks');
@@ -68,7 +66,7 @@ function qrlinks_table($cid = null, $cmid = null) {
     $table->no_sorting('options');
     $table->setup();
 
-    // list($where, $params) = $table->get_sql_where();
+    // ... list($where, $params) = $table->get_sql_where();
     $where = '';
     $params = array();
 
@@ -79,7 +77,7 @@ function qrlinks_table($cid = null, $cmid = null) {
 
     $orderby = $table->get_sql_sort();
 
-    $query = "SELECT q.id, q.name, q.description, q.url, q.createdby, q.timestamp, q.admin_name, q.admin_description,
+    $query = "SELECT q.id, q.public_name, q.public_description, q.url, q.createdby, q.timestamp, q.private_name, q.private_description,
                      u.firstname, u.lastname, u.id AS uid
                 FROM {local_qrlinks} q
                 JOIN {user} u ON u.id = q.createdby
@@ -122,16 +120,16 @@ function qrlinks_table($cid = null, $cmid = null) {
             }
 
             $id = $entry->id;
-            $admin_name = $entry->admin_name;
-            $admin_description = $entry->admin_description;
-            $name = $entry->name;
-            $description = htmlspecialchars($entry->description);
+            $privatename = $entry->private_name;
+            $privatedescription = htmlspecialchars($entry->private_description);
+            $publicname = $entry->public_name;
+            $publicdescription = htmlspecialchars($entry->public_description);
             $url = $entry->url;
             $createdby = $entry->firstname . " " . $entry->lastname;
             $timestamp = $entry->timestamp;
             $options = implode(' ', $buttons);
 
-            $values = array($admin_name, $admin_description, $name, $description, $url, $createdby, $timestamp, $options);
+            $values = array($privatename, $privatedescription, $url, $createdby, $timestamp, $options);
             $table->add_data($values);
         }
     }

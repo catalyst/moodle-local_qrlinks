@@ -52,7 +52,7 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
         $re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
         if (preg_match($re, $currentpage, $matches)) {
             // We are in the edit/management page, lets show a link back to management.
-            $str = get_string('managelink', 'local_qrlinks');
+            $str = get_string('manage_link', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/manage.php');
             $linknode = $nav->add($str, $url);
 
@@ -99,7 +99,7 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
         // https://docs.moodle.org/dev/Local_plugins
         // if ($settingsnode = $nav->find('siteadministration', navigation_node::TYPE_SITE_ADMIN)) {
         if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
-            $str = get_string('managelink', 'local_qrlinks');
+            $str = get_string('manage_link', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/manage.php', $linkparams);
             $node = navigation_node::create(
                     $str,

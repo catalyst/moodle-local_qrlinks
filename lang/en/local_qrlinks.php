@@ -24,51 +24,61 @@
 
 // General plugin strings.
 $string['pluginname'] = 'QR Links';
-$string['nagivationlink'] = 'Create QR link';
-$string['nagivationeditlink'] = 'Edit QR link';
-$string['managelink'] = 'Manage QR links';
-$string['createlabel'] = 'Create QR link';
-$string['previewlabel'] = 'Preview QR link';
-$string['name_missing'] = 'Please provide a name for this QR link';
-$string['url_missing'] = 'Please provide a URL for this QR link';
-$string['description_missing'] = 'Please provide a description for this QR link';
+$string['create_label'] = 'Create QR link';
+
+// Strings for index.php.
+$string['preview_label'] = 'Preview QR link';
+
+// Strings for lib.php.
+$string['manage_link'] = 'Manage QR links';
+$string['navigation_create_link'] = 'Create QR link';
+$string['navigation_edit_link'] = 'Edit QR link';
+$string['navigation_edit_links'] = 'Edit QR links ({$a})';
+
+// Strings for manage.php.
+$string['delete_link_header'] = 'Delete QR Link';
+$string['delete_link_description'] = 'Are you absolutely sure you want to completely delete the QR Link \'{$a}\'?';
 $string['manage_page_heading'] = 'QR Links Management';
+$string['add_new_link'] = 'Add new QR Link';
+
+// Strings for qrlinks_edit.php.
+// pluginname
+// manage_page_heading
+
+// Strings for qrlinks_form.php
+// create_label
+$string['form_element_header'] = 'Generate QR link';
+
+$string['form_element_public_header'] = 'Public fields';
+$string['form_element_public_help'] = 'These fields will be viewable on the public helper page';
+$string['form_element_public_name'] = 'Public Name';
+$string['form_element_public_description'] = 'Public Description';
+
+$string['public_name_missing'] = 'Please provide a name for this QR link';
+$string['public_description_missing'] = 'Please provide a description for this QR link';
+
+$string['form_element_url'] = 'URL';
+$string['url_missing'] = 'Please provide a URL for this QR link';
+$string['invalid_url'] = 'Invalid URL';
+
+$string['form_element_private_header'] = 'Private fields';
+$string['form_element_private_help'] = 'These fields are private identifiers for administering QR links';
+$string['form_element_private_name'] = 'Private Name';
+$string['form_element_private_description'] = 'Private Description';
 
 // Table strings.
-$string['form_element_header'] = 'Generate QR link';
-$string['form_element_admin_header'] = 'Private fields';
-$string['form_element_public_header'] = 'Public fields';
-$string['form_element_url'] = 'URL';
-$string['form_element_name'] = 'Name';
-$string['form_element_description'] = 'Description';
-$string['form_element_admin_name'] = 'Administrator Name';
-$string['form_element_admin_description'] = 'Administrator Description';
-$string['table_header_admin_name'] = 'Administrator Name';
-$string['table_header_admin_description'] = 'Administrator Description';
-$string['table_header_name'] = 'Public Name';
-$string['table_header_description'] = 'Public Description';
+$string['table_header_private_name'] = 'Private Name';
+$string['table_header_private_description'] = 'Private Description';
+$string['table_header_public_name'] = 'Public Name';
+$string['table_header_public_description'] = 'Public Description';
 $string['table_header_url'] = 'URL';
 $string['table_header_createdby'] = 'User';
 $string['table_header_datecreated'] = 'Date';
 $string['table_header_options'] = 'Options';
-$string['preview'] = 'Preview';
-
-// QR link form strings
-$string['admin_field_help'] = 'These fields are private identifiers for administrating QR links';
-$string['public_field_help'] = 'These fields will be viewable on the public helper page';
-$string['admin_name_help_field'] = 'A private field used by administrators to name the QR link';
-$string['name_help_field'] = 'A public facing name that is seen on the helper page';
-$string['url_help_field'] = 'The address that this QR link will resolve to';
-$string['admin_description_help_field'] = 'A private description used by administrators for further details about the QR link';
-$string['description_help_field'] = 'A public facing description that is seen on the helper page';
+$string['table_preview'] = 'Preview';
 
 // Strings for capabilities.
 $string['qrlinks:create'] = 'Create QR links';
 $string['qrlinks:delete'] = 'Delete QR links';
 $string['qrlinks:view'] = 'View a QR link';
 
-// Unsorted strings.
-$string['deletelinkheader'] = 'Delete QR Link';
-$string['deletelinkdescription'] = 'Are you absolutely sure you want to completely delete the QR Link \'{$a}\'?';
-$string['addnewlink'] = 'Add new QR Link';
-$string['invalidurl'] = 'Invalid URL';

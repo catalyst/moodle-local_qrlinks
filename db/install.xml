@@ -7,10 +7,10 @@
     <TABLE NAME="local_qrlinks" COMMENT="QR Links table.">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The name of the QR link"/>
-        <FIELD NAME="admin_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The name of the QR link"/>
-        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="The description of the QR link"/>
-        <FIELD NAME="admin_description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="public_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The name of the QR link"/>
+        <FIELD NAME="private_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The name of the QR link"/>
+        <FIELD NAME="public_description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="The description of the QR link"/>
+        <FIELD NAME="private_description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="url" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The QR links URL content"/>
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The assigned course id for QR links. Optional."/>
         <FIELD NAME="cmid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The assigned course module id. Optional"/>
