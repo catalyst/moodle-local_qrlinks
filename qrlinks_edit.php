@@ -75,12 +75,16 @@ if ($mform->is_cancelled()) {
 
 } else if ($fromform = $mform->get_data()) {
     $qrid = $fromform->id;
+    $adminname = $fromform->admin_name;
+    $admindescription = $fromform->admin_description;
     $name = $fromform->name;
     $description = $fromform->description;
     $url = $fromform->url;
 
     $data = array(
             'id' => $qrid,
+            'admin_name' => $adminname,
+            'admin_description' => $admindescription,
             'name' => $name,
             'description' => $description,
             'url' => $url,

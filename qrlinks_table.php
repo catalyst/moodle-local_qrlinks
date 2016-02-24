@@ -41,7 +41,9 @@ function qrlinks_table($cid = null, $cmid = null) {
     $strdelete  = get_string('delete');
     $strpreview = get_string('preview', 'local_qrlinks');
 
-    $headers = array(get_string('table_header_name', 'local_qrlinks'),
+    $headers = array(get_string('table_header_admin_name', 'local_qrlinks'),
+            get_string('table_header_admin_description', 'local_qrlinks'),
+            get_string('table_header_name', 'local_qrlinks'),
             get_string('table_header_description', 'local_qrlinks'),
             get_string('table_header_url', 'local_qrlinks'),
             get_string('table_header_createdby', 'local_qrlinks'),
@@ -49,7 +51,7 @@ function qrlinks_table($cid = null, $cmid = null) {
             get_string('table_header_options', 'local_qrlinks')
     );
 
-    $columns = array('name', 'description', 'url', 'createdby', 'timestamp', 'options');
+    $columns = array('admin_name', 'admin_description', 'name', 'description', 'url', 'createdby', 'timestamp', 'options');
 
     // Used for specifying the max pagination size.
     $qrlinkscount = $DB->count_records('local_qrlinks');
@@ -77,7 +79,7 @@ function qrlinks_table($cid = null, $cmid = null) {
 
     $orderby = $table->get_sql_sort();
 
-    $query = "SELECT q.id, q.name, q.description, q.url, q.createdby, q.timestamp,
+    $query = "SELECT q.id, q.name, q.description, q.url, q.createdby, q.timestamp, q.admin_name, q.admin_description,
                      u.firstname, u.lastname, u.id AS uid
                 FROM {local_qrlinks} q
                 JOIN {user} u ON u.id = q.createdby
@@ -120,6 +122,8 @@ function qrlinks_table($cid = null, $cmid = null) {
             }
 
             $id = $entry->id;
+            $admin_name = $entry->admin_name;
+            $admin_description = $entry->admin_description;
             $name = $entry->name;
             $description = htmlspecialchars($entry->description);
             $url = $entry->url;
@@ -127,7 +131,7 @@ function qrlinks_table($cid = null, $cmid = null) {
             $timestamp = $entry->timestamp;
             $options = implode(' ', $buttons);
 
-            $values = array($name, $description, $url, $createdby, $timestamp, $options);
+            $values = array($admin_name, $admin_description, $name, $description, $url, $createdby, $timestamp, $options);
             $table->add_data($values);
         }
     }
