@@ -33,14 +33,39 @@ if (!defined('MOODLE_INTERNAL')) {
  * @param global_navigation $nav
  */
 function local_qrlinks_extend_navigation(global_navigation $nav) {
-    global $CFG, $PAGE, $FULLME, $SESSION;
+    global $PAGE, $DB;
 
-    $courseid = $PAGE->course->id;
+    // $courseid = $PAGE->course->id;
 
-    if (has_capability('local/qrlinks:create', context_system::instance())) {
-        $str = get_string('nagivationlink', 'local_qrlinks');
-        $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
-        $linknode = $nav->add($str, $url);
+    if (has_capability('local/qrlinks:create', $PAGE->context)) {
+        $currentpage = $PAGE->url->out();
+
+        $compare_clause = $DB->sql_compare_text('url') . ' = ' . $DB->sql_compare_text(':url');
+        $params = array('url' => $currentpage);
+        $query = "SELECT id, url
+                    FROM {local_qrlinks}
+                   WHERE $compare_clause";
+
+        // If this is true, then a QR link has already been assigned to this page.
+        $qrlink = $DB->get_record_sql($query, $params, IGNORE_MULTIPLE);
+
+        $re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
+        if (preg_match($re, $currentpage, $matches)) {
+            $str = get_string('managelink', 'local_qrlinks');
+            $url = new moodle_url('/local/qrlinks/manage.php');
+            $linknode = $nav->add($str, $url);
+
+        } else if (empty($qrlink)) {
+            $str = get_string('nagivationlink', 'local_qrlinks');
+            $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
+            $linknode = $nav->add($str, $url);
+        } else {
+            // We will edit the existing link
+            $id = $qrlink->id;
+            $str = get_string('nagivationeditlink', 'local_qrlinks');
+            $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $id));
+            $linknode = $nav->add($str, $url);
+        }
     }
 
 }
@@ -53,44 +78,43 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
  * @param context $context
  */
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
-    global $CFG, $PAGE, $FULLME, $SESSION;
+    global $PAGE;
 
-    $courseid = $PAGE->course->id;
-    $linkparams = array('cid' => $courseid);
+    if (has_capability('local/qrlinks:create', $PAGE->context)) {
 
-    if ($PAGE->cm) {
-        $module = $PAGE->cm->id;
-        $linkparams = array('cid' => $courseid, 'cmid' => $module);
-    }
+        $courseid = $PAGE->course->id;
+        $linkparams = array('cid' => $courseid);
 
-    // Only add this settings item on non-site course pages.
-    if (!$PAGE->course or $courseid == 1) {
-        return;
-    }
-
-    // https://docs.moodle.org/dev/Local_plugins
-    // if ($settingsnode = $nav->find('siteadministration', navigation_node::TYPE_SITE_ADMIN)) {
-    if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
-        $str = get_string('managelink', 'local_qrlinks');
-        $url = new moodle_url('/local/qrlinks/manage.php', $linkparams);
-        $node = navigation_node::create(
-                $str,
-                $url,
-                navigation_node::NODETYPE_LEAF,
-                'qrlinks',
-                'qrlinks',
-                new pix_icon('t/edit', $str)
-        );
-
-        if ($PAGE->url->compare($url, URL_MATCH_BASE)) {
-            $node->make_active();
+        if ($PAGE->cm) {
+            $module = $PAGE->cm->id;
+            $linkparams = array('cid' => $courseid, 'cmid' => $module);
         }
 
-        if (has_capability('local/qrlinks:create', context_system::instance())) {
+        // Only add this settings item on non-site course pages.
+        if (!$PAGE->course or $courseid == 1) {
+            return;
+        }
+
+        // https://docs.moodle.org/dev/Local_plugins
+        // if ($settingsnode = $nav->find('siteadministration', navigation_node::TYPE_SITE_ADMIN)) {
+        if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
+            $str = get_string('managelink', 'local_qrlinks');
+            $url = new moodle_url('/local/qrlinks/manage.php', $linkparams);
+            $node = navigation_node::create(
+                    $str,
+                    $url,
+                    navigation_node::NODETYPE_LEAF,
+                    'qrlinks',
+                    'qrlinks',
+                    new pix_icon('t/edit', $str)
+            );
+
+            if ($PAGE->url->compare($url, URL_MATCH_BASE)) {
+                $node->make_active();
+            }
+
             $settingsnode->add_node($node);
         }
-
     }
-
 }
 
