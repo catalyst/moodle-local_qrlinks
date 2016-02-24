@@ -52,7 +52,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         echo $headdiv;
 
         // Will included an <img src="data:image/png;base64,... /> to be visible.
-        require_once('qr.php');
+        include('qr.php');
 
         echo $descdiv;
     }
