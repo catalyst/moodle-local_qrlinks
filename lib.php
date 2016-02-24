@@ -37,13 +37,6 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 
     $courseid = $PAGE->course->id;
 
-    // Only add this settings item on non-site course pages.
-    /*
-    if (!$PAGE->course or $courseid == 1) {
-        return;
-    }
-    */
-
     if (has_capability('local/qrlinks:create', context_system::instance())) {
         $str = get_string('nagivationlink', 'local_qrlinks');
         $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
@@ -78,8 +71,8 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
     // https://docs.moodle.org/dev/Local_plugins
     // if ($settingsnode = $nav->find('siteadministration', navigation_node::TYPE_SITE_ADMIN)) {
     if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
-        $str = get_string('nagivationlink', 'local_qrlinks');
-        $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', $linkparams);
+        $str = get_string('managelink', 'local_qrlinks');
+        $url = new moodle_url('/local/qrlinks/manage.php', $linkparams);
         $node = navigation_node::create(
                 $str,
                 $url,
