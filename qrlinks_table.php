@@ -66,7 +66,15 @@ function qrlinks_table($cid = null, $cmid = null) {
     $table->no_sorting('options');
     $table->setup();
 
-    list($where, $params) = $table->get_sql_where();
+    // list($where, $params) = $table->get_sql_where();
+    $where = '';
+    $params = array();
+
+    if ($cid > -1) {
+        $where = 'WHERE q.courseid = ?';
+        $params = array('cid' => $cid);
+    }
+
     $orderby = $table->get_sql_sort();
 
     $query = "SELECT q.id, q.name, q.description, q.url, q.createdby, q.timestamp,
