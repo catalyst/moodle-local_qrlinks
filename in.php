@@ -26,9 +26,17 @@ require_once('../../config.php');
 require_once($CFG->libdir . '/accesslib.php');
 global $DB;
 
+// Guest login from moodlelib.php line 2546.
 if (!isloggedin()) {
-    $guest = get_complete_user_data('id', $CFG->siteguest);
+    if (!$guest = get_complete_user_data('id', $CFG->siteguest)) {
+        // Misconfigured site guest, just redirect to login page.
+        redirect(get_login_url());
+        exit; // Never reached.
+    }
+
+    $lang = isset($SESSION->lang) ? $SESSION->lang : $CFG->lang;
     complete_user_login($guest);
+    $SESSION->lang = $lang;
 }
 
 $id = required_param('id', PARAM_INT);
