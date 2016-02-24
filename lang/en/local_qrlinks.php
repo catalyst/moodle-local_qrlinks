@@ -24,6 +24,7 @@
 
 $string['pluginname'] = 'QR Links';
 $string['nagivationlink'] = 'Create QR link';
+$string['managelink'] = 'Manage QR links';
 $string['createlabel'] = 'Create QR link';
 $string['previewlabel'] = 'Preview QR link';
 $string['preview'] = 'Preview';
