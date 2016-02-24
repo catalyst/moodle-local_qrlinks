@@ -27,7 +27,8 @@ require_once($CFG->libdir . '/accesslib.php');
 global $DB;
 
 if (!isloggedin()) {
-    authenticate_user_login('guest', 'guest');
+    $guest = get_complete_user_data('id', $CFG->siteguest);
+    complete_user_login($guest);
 }
 
 $id = required_param('id', PARAM_INT);
