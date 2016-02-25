@@ -41,12 +41,13 @@ function qrlinks_table($cid = null, $cmid = null) {
     $strdelete  = get_string('delete');
     $strpreview = get_string('table_preview', 'local_qrlinks');
 
-    $headers = array(get_string('table_header_private_name', 'local_qrlinks'),
-            get_string('table_header_private_description', 'local_qrlinks'),
-            get_string('table_header_url', 'local_qrlinks'),
-            get_string('table_header_createdby', 'local_qrlinks'),
-            get_string('table_header_datecreated', 'local_qrlinks'),
-            get_string('table_header_options', 'local_qrlinks')
+    $headers = array(
+        get_string('table_header_private_name',         'local_qrlinks'),
+        get_string('table_header_private_description',  'local_qrlinks'),
+        get_string('table_header_url',                  'local_qrlinks'),
+        get_string('table_header_createdby',            'local_qrlinks'),
+        get_string('table_header_datecreated',          'local_qrlinks'),
+        get_string('table_header_options',              'local_qrlinks'),
     );
 
     $columns = array('private_name', 'private_description', 'url', 'createdby', 'timestamp', 'options');

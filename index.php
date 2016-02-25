@@ -40,7 +40,7 @@ $PAGE->set_pagelayout('report');
 
 $title = 'QR link: ' . $data->public_name;
 $PAGE->set_title($title);
-//$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $renderer = $PAGE->get_renderer('local_qrlinks');
 
