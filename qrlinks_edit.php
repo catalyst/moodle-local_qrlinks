@@ -58,8 +58,8 @@ if ($courseid > -1) {
 $refererurl = $_SERVER['HTTP_REFERER'];
 $returnurl = new moodle_url('/local/qrlinks/manage.php');
 
-// If the refererurl does not match manage.php/qrlinks_edit.php, set the returnurl to be the referer.
-$re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
+// If the refererurl does not match qrlinks_edit.php, set the returnurl to be the referer.
+$re = "/local\\/qrlinks\\/(qrlinks_edit\\.php)/";
 if (!preg_match($re, $refererurl, $matches)) {
     $SESSION->qrlinkreturnurl = $refererurl;
 }
@@ -111,7 +111,6 @@ if ($id > -1) {
     $mform->set_data($data);
 
 } else {
-
     // Do not populate the URL field if we just arrived from the manage.php/qrlinks_edit.php page.
     $re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
     if (!preg_match($re, $refererurl, $matches)) {
