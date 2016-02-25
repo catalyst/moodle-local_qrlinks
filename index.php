@@ -36,10 +36,11 @@ $PAGE->set_url(new moodle_url('/local/qrlinks/index.php', array('id' => $id)));
 
 $sitecontext = context_system::instance();
 $PAGE->set_context($sitecontext);
-$PAGE->set_pagelayout('embedded');
+$PAGE->set_pagelayout('report');
 
-$PAGE->set_title(get_string('preview_label', 'local_qrlinks'));
-// $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+$title = 'QR link: ' . $data->public_name;
+$PAGE->set_title($title);
+//$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $renderer = $PAGE->get_renderer('local_qrlinks');
 
@@ -47,6 +48,7 @@ echo $OUTPUT->header();
 
 if (!empty($data)) {
     $renderer->render_qrlinks_helper($data);
+    $renderer->render_qrlinks_print_button();
 }
 
 echo $OUTPUT->footer();

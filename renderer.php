@@ -54,5 +54,9 @@ class local_qrlinks_renderer extends plugin_renderer_base {
 
         echo $descdiv;
     }
+
+    public function render_qrlinks_print_button() {
+        echo '<button id="printbutton" onclick="window.print();">Print Page</button>';
+    }
 }
 

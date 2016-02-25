@@ -11,7 +11,7 @@
     color: Black;
   }
  
-  div.block, header, footer {
+  div.block, header, footer, #printbutton {
     display: none;
   }
  
