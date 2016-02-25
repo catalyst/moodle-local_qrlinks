@@ -24,7 +24,9 @@
 
 require_once('../../config.php');
 require_once('renderer.php');
-global $DB;
+global $DB, $PAGE;
+
+$PAGE->requires->css('/local/qrlinks/print.css');
 
 $id = required_param('id', PARAM_INT);
 
