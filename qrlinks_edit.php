@@ -27,9 +27,11 @@ require_once('../../config.php');
 require_once('qrlinks_form.php');
 require_once('locallib.php');
 
-$id       = optional_param('id', -1, PARAM_INT);
-$courseid = optional_param('cid', -1, PARAM_INT);
-$moduleid = optional_param('cmid', -1, PARAM_INT);
+//$courseid = optional_param('cid', null, PARAM_INT);
+//$moduleid = optional_param('cmid', null, PARAM_INT);
+$id        = optional_param('id', -1, PARAM_INT);
+$returnurl = optional_param('url', null, PARAM_URL);
+$title     = optional_param('title', null, PARAM_RAW);
 
 // Cleaning up the URL, not adding parameters to the end of the address if the page is called by itself.
 if ($id > -1) {
@@ -46,23 +48,6 @@ $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
-/*
-$array = array();
-if ($courseid > -1) {
-    $array = array('cid' => $courseid);
-} else if ($moduleid > -1) {
-    $array = array('cid' => $courseid, 'cmid' => $moduleid);
-}
-*/
-
-$refererurl = $_SERVER['HTTP_REFERER'];
-$returnurl = new moodle_url('/local/qrlinks/manage.php');
-
-// If the refererurl does not match qrlinks_edit.php, set the returnurl to be the referer.
-$re = "/local\\/qrlinks\\/(qrlinks_edit\\.php)/";
-if (!preg_match($re, $refererurl, $matches)) {
-    $SESSION->qrlinkreturnurl = $refererurl;
-}
 
 $mform = new qrlinks_form();
 
@@ -96,13 +81,14 @@ if ($mform->is_cancelled()) {
 
     if ($qrid > -1) {
         // Update the QR link with a known ID.
-        update_qrlink($data);
+        $qrid = update_qrlink($data);
     } else {
         // Insert a QR link when the ID is unset or -1.
-        insert_qrlink($data);
+        $qrid = insert_qrlink($data);
     }
 
-    redirect($returnurl);
+    $previewurl = new moodle_url('/local/qrlinks/index.php', array('id' => $qrid));
+    redirect($previewurl);
 }
 
 // The data will be populated from an existing record.
@@ -113,8 +99,9 @@ if ($id > -1) {
 } else {
     // Do not populate the URL field if we just arrived from the manage.php/qrlinks_edit.php page.
     $re = "/local\\/qrlinks\\/(manage\\.php|qrlinks_edit\\.php)/";
-    if (!preg_match($re, $refererurl, $matches)) {
-        $data['url'] = $refererurl;
+    if (!preg_match($re, $returnurl, $matches)) {
+        $data['url'] = $returnurl;
+        $data['public_name'] = $title;
         $mform->set_data($data);
     }
 }
