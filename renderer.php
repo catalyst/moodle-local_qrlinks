@@ -49,18 +49,26 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         $desctext = $data->public_description;
         $descdiv = html_writer::div($desctext, 'qrdescription');
 
-        echo $headdiv;
+        $qrurl = new moodle_url("/local/qrlinks/qr.php?id");
+        $alt = $data->url;
+        $urlstr = html_writer::link($data->url, $data->url);
 
-        // Will included an <img src="data:image/png;base64,... /> to be visible.
-        include('qr.php');
+        $out  = $headdiv;
+        $out .= html_writer::img($qrurl, $alt);
+        $out .= html_writer::empty_tag('br');
+        $out .= $urlstr;
+        $out .= $descdiv;
 
-        echo $descdiv;
+        return $out;
     }
 
+    /**
+     * Renders a helpful button to print the page.
+     * @param array $data
+     */
     public function render_qrlinks_print_button() {
-        echo '<button id="printbutton" onclick="window.print();">Print Page</button>';
+        return '<button id="printbutton" onclick="window.print();">Print Page</button>';
     }
-}
 
     /**
      * Renders a table using tablelib.php to show a list of QR codes that have been generated.
