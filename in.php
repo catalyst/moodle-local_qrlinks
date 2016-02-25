@@ -26,6 +26,8 @@ require_once('../../config.php');
 require_once($CFG->libdir . '/accesslib.php');
 global $DB;
 
+$id = required_param('id', PARAM_INT);
+
 // Guest login from moodlelib.php line 2546.
 if (!isloggedin()) {
     if (!$guest = get_complete_user_data('id', $CFG->siteguest)) {
@@ -38,8 +40,6 @@ if (!isloggedin()) {
     complete_user_login($guest);
     $SESSION->lang = $lang;
 }
-
-$id = required_param('id', PARAM_INT);
 
 $data = $DB->get_record('local_qrlinks', array('id' => $id));
 
