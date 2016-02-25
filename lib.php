@@ -122,7 +122,7 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
             return;
         }
 
-        // https://docs.moodle.org/dev/Local_plugins
+        // Details https://docs.moodle.org/dev/Local_plugins from here.
         if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
             $str = get_string('manage_link', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/manage.php', $linkparams);

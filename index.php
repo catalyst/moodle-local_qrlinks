@@ -30,7 +30,7 @@ $PAGE->requires->css('/local/qrlinks/print.css');
 
 $id = required_param('id', PARAM_INT);
 
-$data = $DB->get_record('local_qrlinks', array('id' => $id) ,'*', MUST_EXIST);
+$data = $DB->get_record('local_qrlinks', array('id' => $id) , '*', MUST_EXIST);
 
 $PAGE->set_url(new moodle_url('/local/qrlinks/index.php', array('id' => $id)));
 

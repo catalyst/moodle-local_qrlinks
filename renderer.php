@@ -76,7 +76,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
      * @param int $cid course id
      * @param int $cmid course module id
      */
-    function render_qrlinks_qrlinks_table($cid = null, $cmid = null) {
+    public function render_qrlinks_qrlinks_table($cid = null, $cmid = null) {
         global $DB, $PAGE, $OUTPUT;
 
         $stredit    = get_string('edit');
@@ -109,7 +109,6 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         $table->no_sorting('options');
         $table->setup();
 
-        // ... list($where, $params) = $table->get_sql_where();
         $where = '';
         $params = array();
 

@@ -27,8 +27,6 @@ require_once('../../config.php');
 require_once('qrlinks_form.php');
 require_once('locallib.php');
 
-//$courseid = optional_param('cid', null, PARAM_INT);
-//$moduleid = optional_param('cmid', null, PARAM_INT);
 $id        = optional_param('id', -1, PARAM_INT);
 $returnurl = optional_param('url', null, PARAM_URL);
 $title     = optional_param('title', null, PARAM_RAW);
