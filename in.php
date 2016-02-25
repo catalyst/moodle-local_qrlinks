@@ -24,9 +24,12 @@
 
 require_once('../../config.php');
 require_once($CFG->libdir . '/accesslib.php');
-global $DB;
+global $DB, $CFG, $SESSION;
 
 $id = required_param('id', PARAM_INT);
+
+$data = $DB->get_record('local_qrlinks', array('id' => $id), '*', MUST_EXIST);
+$url = $data->url;
 
 // Guest login from moodlelib.php line 2546.
 if (!isloggedin()) {
@@ -40,9 +43,5 @@ if (!isloggedin()) {
     complete_user_login($guest);
     $SESSION->lang = $lang;
 }
-
-$data = $DB->get_record('local_qrlinks', array('id' => $id));
-
-$url = $data->url;
 
 redirect($url);
