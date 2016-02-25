@@ -68,7 +68,8 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 
             $params = array('url' => $currentpage);
 
-            $query = "SELECT id, url
+            $query = "SELECT id,
+                             url
                         FROM {local_qrlinks}
                        WHERE $compareclause";
 
@@ -78,8 +79,10 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 
             if (empty($qrlink)) {
                 // No QR link found, lets make a Create Link.
+                $title = $PAGE->title;
+                $params = array('url' => $currentpage, 'title' => $title);
                 $str = get_string('navigation_create_link', 'local_qrlinks');
-                $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
+                $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', $params);
                 $linknode = $nav->add($str, $url);
 
             } else {
@@ -140,4 +143,3 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
         }
     }
 }
-
