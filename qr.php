@@ -22,22 +22,14 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-if (!defined('MOODLE_INTERNAL')) {
-    die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
-}
-
 require_once('../../config.php');
-global $DB;
+
+header('Content-Type: image/png');
 
 use Endroid\QrCode\QrCode;
 require_once("thirdparty/QrCode/src/QrCode.php");
 
 $qrid = required_param('id', PARAM_INT);
-
-$data = $DB->get_record('local_qrlinks', array('id' => $qrid));
-
-$data = $data->url;
-
 $data = new moodle_url('/local/qrlinks/in.php', array('id' => $qrid));
 
 $code = new QrCode();
@@ -48,5 +40,4 @@ $code->setErrorCorrection('high');
 $code->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0));
 $code->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0));
 $code->setLabelFontSize(16);
-
-echo '<img src="' .$code->getDataUri() . '" />';
+$code->render();
