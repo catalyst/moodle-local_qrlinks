@@ -121,9 +121,7 @@ function qrlinks_table($cid = null, $cmid = null) {
 
             $id = $entry->id;
             $privatename = $entry->private_name;
-            $privatedescription = htmlspecialchars($entry->private_description);
-            $publicname = $entry->public_name;
-            $publicdescription = htmlspecialchars($entry->public_description);
+            $privatedescription = strip_tags($entry->private_description);
             $url = $entry->url;
             $createdby = $entry->firstname . " " . $entry->lastname;
             $timestamp = userdate($entry->timestamp, '%Y/%m/%d');
