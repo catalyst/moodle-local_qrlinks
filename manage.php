@@ -25,27 +25,17 @@
 require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
 
-require_once('qrlinks_table.php');
+require_once('renderer.php');
 require_once('locallib.php');
 
-$courseid = optional_param('cid', -1, PARAM_INT);
-$moduleid = optional_param('cmid', -1, PARAM_INT);
+$courseid = optional_param('cid', null, PARAM_INT);
+$moduleid = optional_param('cmid', null, PARAM_INT);
 $delete   = optional_param('delete', 0, PARAM_INT);
-$edit     = optional_param('edit', 0, PARAM_INT);
 $confirm  = optional_param('confirm', '', PARAM_ALPHANUM);   // MD5 confirmation hash.
 
 $returnurl = new moodle_url('/local/qrlinks/manage.php');
 
-if ($courseid > -1) {
-    require_login($courseid);
-
-    $context = context_course::instance($courseid);
-    $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
-    $PAGE->set_url($url);
-    $PAGE->set_pagelayout('incourse');
-    $returnurl = $url;
-
-} else if ($moduleid > -1) {
+if ($moduleid) {
     require_login($courseid, false, $moduleid);
 
     $context = context_module::instance($moduleid);
@@ -54,6 +44,14 @@ if ($courseid > -1) {
     $PAGE->set_pagelayout('incourse');
     $returnurl = $url;
 
+} else if ($courseid) {
+    require_login($courseid);
+
+    $context = context_course::instance($courseid);
+    $url = new moodle_url('/local/qrlinks/manage.php', array('cid' => $courseid));
+    $PAGE->set_url($url);
+    $PAGE->set_pagelayout('incourse');
+    $returnurl = $url;
 } else {
     require_login();
 
@@ -62,7 +60,6 @@ if ($courseid > -1) {
     $url = new moodle_url('/local/qrlinks/manage.php');
     $PAGE->set_url($url);
     $returnurl = $url;
-
 }
 
 $PAGE->set_context($context);
@@ -72,7 +69,8 @@ require_capability('local/qrlinks:manage', $context);
 if ($delete && confirm_sesskey()) {
 
     if ($confirm != md5($delete)) {
-        $query = "SELECT private_name, url
+        $query = "SELECT private_name,
+                         url
                     FROM {local_qrlinks}
                    WHERE id = ?";
 
@@ -90,7 +88,7 @@ if ($delete && confirm_sesskey()) {
         echo $OUTPUT->confirm(get_string('delete_link_description', 'local_qrlinks', $result->url), $deletebutton, $returnurl);
         echo $OUTPUT->footer();
 
-        return;
+        exit;
 
     } else if (data_submitted()) {
         delete_qrlink($delete);
@@ -104,16 +102,15 @@ if ($delete && confirm_sesskey()) {
 
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+$renderer = $PAGE->get_renderer('local_qrlinks');
 
 echo $OUTPUT->header();
 
-qrlinks_table($courseid, $moduleid);
+echo $renderer->render_qrlinks_qrlinks_table($courseid, $moduleid);
 
-if (has_capability('local/qrlinks:create', $context)) {
-    $url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
+$url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
 
-    echo html_writer::empty_tag('br');
-    echo $OUTPUT->single_button($url, get_string('add_new_link', 'local_qrlinks'), 'get');
-}
+echo html_writer::empty_tag('br');
+echo $OUTPUT->single_button($url, get_string('add_new_link', 'local_qrlinks'), 'get');
 
 echo $OUTPUT->footer();
