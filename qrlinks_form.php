@@ -103,6 +103,7 @@ class qrlinks_form extends moodleform {
      * Overrides set_data to populate the editor fields.
      * {@inheritDoc}
      * @see moodleform::set_data()
+     * @param stdClass|array $data object or array of default values
      */
     public function set_data($data) {
 
