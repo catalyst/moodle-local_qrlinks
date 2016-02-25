@@ -1,6 +1,10 @@
 QR Links - Moodle local plugin
 ========================
 
+Adds a new item to the navigation block allowing you to create QR code that directly links to the page.
+
+This is best used when enabling guest access to a course. After printing the QR code helper page that is generated, it allows anyone to use a smart-phone or other device to scan the QR code and gain direct access to a specified course.
+
 # Installation
 
 Extract the plugin to /local/qrlinks
@@ -48,3 +52,5 @@ Regarding the Create QR link/Edit QR link item in the global navigation, create 
 qrlinks_edit, if editing the qr link, change submit button from Create QR link to Edit QR link.
 
 Clean up unused cid/cmid that was not part of the implementation.
+
+UI/UX layout update in index.php
