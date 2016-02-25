@@ -30,7 +30,7 @@ $PAGE->requires->css('/local/qrlinks/print.css');
 
 $id = required_param('id', PARAM_INT);
 
-$data = $DB->get_record('local_qrlinks', array('id' => $id));
+$data = $DB->get_record('local_qrlinks', array('id' => $id) ,'*', MUST_EXIST);
 
 $PAGE->set_url(new moodle_url('/local/qrlinks/index.php', array('id' => $id)));
 
@@ -40,15 +40,13 @@ $PAGE->set_pagelayout('report');
 
 $title = get_string('preview_title', 'local_qrlinks', $data->public_name);
 $PAGE->set_title($title);
-//$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 
 $renderer = $PAGE->get_renderer('local_qrlinks');
 
 echo $OUTPUT->header();
 
-if (!empty($data)) {
-    $renderer->render_qrlinks_helper($data);
-    $renderer->render_qrlinks_print_button();
-}
+echo $renderer->render_qrlinks_helper($data);
+echo $renderer->render_qrlinks_print_button();
 
 echo $OUTPUT->footer();
