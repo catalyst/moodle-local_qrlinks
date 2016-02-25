@@ -38,7 +38,7 @@ if (!defined('MOODLE_INTERNAL')) {
 function local_qrlinks_extend_navigation(global_navigation $nav) {
     global $PAGE, $DB;
 
-    if (has_capability('local/qrlinks:create', $PAGE->context)) {
+    if (has_capability('local/qrlinks:manage', $PAGE->context)) {
         $currentpage = $PAGE->url->out();
 
         $qrlinkre = "/local\\/qrlinks\\/(manage|qrlinks_edit)\\.php/";
@@ -104,7 +104,7 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 function local_qrlinks_extend_settings_navigation(settings_navigation $nav, context $context) {
     global $PAGE;
 
-    if (has_capability('local/qrlinks:create', $PAGE->context)) {
+    if (has_capability('local/qrlinks:manage', $PAGE->context)) {
 
         $courseid = $PAGE->course->id;
         $linkparams = array('cid' => $courseid);

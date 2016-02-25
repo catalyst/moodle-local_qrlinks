@@ -67,11 +67,11 @@ if ($courseid > -1) {
 
 $PAGE->set_context($context);
 
+require_capability('local/qrlinks:manage', $context);
+
 if ($delete && confirm_sesskey()) {
 
     if ($confirm != md5($delete)) {
-        require_capability('local/qrlinks:delete', $context);
-
         $query = "SELECT private_name, url
                     FROM {local_qrlinks}
                    WHERE id = ?";

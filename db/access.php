@@ -23,30 +23,14 @@
  */
 
 $capabilities = array(
-    'local/qrlinks:create' => array (
+    'local/qrlinks:manage' => array (
         'captype'       => 'write',
-        'contextlevel' => CONTEXT_MODULE,
+        'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(
-            'guest'          => CAP_PROHIBIT,
-            'user'           => CAP_PROHIBIT,
-            'student'        => CAP_PROHIBIT,
-            'teacher'        => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
             'manager'        => CAP_ALLOW
-        )
-    ),
-
-    'local/qrlinks:delete' => array (
-        'captype'       => 'write',
-        'contextlevel' => CONTEXT_MODULE,
-        'archetypes' => array(
-            'guest'          => CAP_PROHIBIT,
-            'user'           => CAP_PROHIBIT,
-            'student'        => CAP_PROHIBIT,
-            'teacher'        => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-            'manager'        => CAP_ALLOW
-        )
+        ),
+        'clonepermissionsfrom' => 'moodle/course:manageactivities'
     ),
 
     'local/qrlinks:view' => array (

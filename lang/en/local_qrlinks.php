@@ -78,7 +78,5 @@ $string['table_header_options'] = 'Options';
 $string['table_preview'] = 'Preview';
 
 // Strings for capabilities.
-$string['qrlinks:create'] = 'Create QR links';
-$string['qrlinks:delete'] = 'Delete QR links';
+$string['qrlinks:manage'] = 'Manage QR links';
 $string['qrlinks:view'] = 'View a QR link';
-
