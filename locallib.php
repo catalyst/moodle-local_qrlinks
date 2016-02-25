@@ -29,30 +29,36 @@ if (!defined('MOODLE_INTERNAL')) {
 /**
  * Helper function to insert a QR link record.
  * @param stdClass $data
+ * @return boolean|number return value for the insert
  */
 function insert_qrlink($data) {
     global $DB;
 
-    $DB->insert_record('local_qrlinks', $data);
+    $ret = $DB->insert_record('local_qrlinks', $data);
+    return $ret;
 }
 
 /**
  * Helper function to update a QR link record.
  * @param stdClass $data
+ * @return boolean|number return value for the update
  */
 function update_qrlink($data) {
     global $DB;
 
-    $DB->update_record('local_qrlinks', $data);
+    $ret = $DB->update_record('local_qrlinks', $data);
+    return $ret;
 
 }
 
 /**
  * Helper function to delete a QR link record.
  * @param int $id
+ * @return boolean|number return value for the delete
  */
 function delete_qrlink($id) {
     global $DB;
 
-    $DB->delete_records('local_qrlinks', array('id' => $id));
+    $ret = $DB->delete_records('local_qrlinks', array('id' => $id));
+    return $ret;
 }
