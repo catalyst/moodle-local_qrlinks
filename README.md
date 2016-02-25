@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nhoobin/moodle-local_qrlinks.svg?branch=master)](https://travis-ci.org/nhoobin/moodle-local_qrlinks)
+
 QR Links - Moodle local plugin
 ========================
 
