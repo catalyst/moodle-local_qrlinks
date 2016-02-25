@@ -78,8 +78,8 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
     $qrid = $fromform->id;
     $privatename = $fromform->private_name;
-    $privatedescription = $fromform->private_description['text'];
     $publicname = $fromform->public_name;
+    $privatedescription = $fromform->private_description['text'];
     $publicdescription = $fromform->public_description['text'];
     $url = $fromform->url;
 
@@ -88,7 +88,7 @@ if ($mform->is_cancelled()) {
             'private_name' => $privatename,
             'private_description' => $privatedescription,
             'public_name' => $publicname,
-            'private_description' => $publicdescription,
+            'public_description' => $publicdescription,
             'url' => $url,
             'createdby' => $USER->id,
             'timestamp' => time()
@@ -109,6 +109,7 @@ if ($mform->is_cancelled()) {
 if ($id > -1) {
     $data = $DB->get_record('local_qrlinks', array('id' => $id));
     $mform->set_data($data);
+
 } else {
 
     // Do not populate the URL field if we just arrived from the manage.php/qrlinks_edit.php page.

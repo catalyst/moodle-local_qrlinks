@@ -98,4 +98,31 @@ class qrlinks_form extends moodleform {
 
         return $errors;
     }
+
+    /**
+     * Overrides set_data to populate the editor fields.
+     * {@inheritDoc}
+     * @see moodleform::set_data()
+     */
+    public function set_data($data) {
+
+        $privatedescription = $this->_form->getElement('private_description')->getValue();
+        $publicdescription = $this->_form->getElement('public_description')->getValue();
+
+        if (!empty($data->private_description)) {
+            $privatedescription['text'] = $data->private_description;
+
+            $data->private_description = array();
+            $data->private_description['text'] = $privatedescription['text'];
+        }
+
+        if (!empty($data->public_description)) {
+            $publicdescription['text'] = $data->public_description;
+
+            $data->public_description = array();
+            $data->public_description['text'] = $publicdescription['text'];
+        }
+
+        parent::set_data($data);
+    }
 }
