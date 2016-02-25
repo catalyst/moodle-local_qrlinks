@@ -28,6 +28,6 @@ if (!defined('MOODLE_INTERNAL')) {
 
 $plugin->version   = 2016022500;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->release   = 2016022500;        // Match release exactly to version.
-$plugin->requires  = 2015050500;        // Requires this Moodle version.
+$plugin->requires  = 2014051200;        // Requires Moodle version 2.7
 $plugin->component = 'local_qrlinks';   // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
