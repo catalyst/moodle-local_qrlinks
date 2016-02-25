@@ -24,7 +24,7 @@ For more information about guest access, read the [Moodle documentation for gues
 
 ## Creating QR Links
 
-If the current user has the `local/qrlinks:create` capability then a link in the navigation block will appear.
+If the current user has the `local/qrlinks:manage` capability then a link in the navigation block will appear.
 
 At any time you can click `Create QR link` and it will take you to an editing form to create a QR link for that page.
 
