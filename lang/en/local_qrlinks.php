@@ -28,6 +28,7 @@ $string['create_label'] = 'Create QR link';
 
 // Strings for index.php.
 $string['preview_label'] = 'Preview QR link';
+$string['preview_title'] = 'QR link: {$a}';
 
 // Strings for lib.php.
 $string['manage_link'] = 'Manage QR links';
