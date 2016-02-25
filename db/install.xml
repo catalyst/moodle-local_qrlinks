@@ -8,7 +8,7 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="public_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The public name of the QR link"/>
-        <FIELD NAME="private_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The privatename of the QR link"/>
+        <FIELD NAME="private_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="The private name of the QR link"/>
         <FIELD NAME="public_description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="The public description of the QR link"/>
         <FIELD NAME="private_description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="The private description of the QR link"/>
         <FIELD NAME="url" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The QR links URL content"/>
