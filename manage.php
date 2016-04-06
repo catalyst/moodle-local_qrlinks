@@ -100,17 +100,16 @@ if ($delete && confirm_sesskey()) {
     }
 }
 
+$table = generate_table($courseid, $moduleid);
+$data = generate_table_data($table);
+$url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
+
 $PAGE->set_title(get_string('pluginname', 'local_qrlinks'));
 $PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
 $renderer = $PAGE->get_renderer('local_qrlinks');
 
 echo $OUTPUT->header();
-
-echo $renderer->render_qrlinks_qrlinks_table($courseid, $moduleid);
-
-$url = new moodle_url('/local/qrlinks/qrlinks_edit.php');
-
+echo $renderer->render_qrlinks_qrlinks_table($table, $data, $courseid, $moduleid);
 echo html_writer::empty_tag('br');
 echo $OUTPUT->single_button($url, get_string('add_new_link', 'local_qrlinks'), 'get');
-
 echo $OUTPUT->footer();
