@@ -153,19 +153,19 @@ class local_qrlinks_renderer extends plugin_renderer_base {
                 // Delete button.
                 if (has_capability('local/qrlinks:manage', context_system::instance())) {
                     $url = new moodle_url('', array_merge(array('delete' => $entry->id, 'sesskey' => sesskey()), $cmidarray));
-                    $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => $strdelete, 'class' => 'iconsmall'));
+                    $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('i/delete'), 'alt' => $strdelete, 'class' => 'iconsmall'));
                     $buttons[] = html_writer::link($url, $html, array('title' => $strdelete));
                 }
 
                 // Preview button for viewing the generated QR link information page.
                 $url = new moodle_url('/local/qrlinks/index.php', array('id' => $entry->id));
-                $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/hide'), 'alt' => $strpreview, 'class' => 'iconsmall'));
+                $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('i/preview'), 'alt' => $strpreview, 'class' => 'iconsmall'));
                 $buttons[] = html_writer::link($url, $html, array('title' => $strpreview));
 
                 // Edit button.
                 if (has_capability('local/qrlinks:manage', context_system::instance())) {
                     $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array_merge(array('id' => $entry->id, 'sesskey' => sesskey()), $cmidarray));
-                    $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/edit'), 'alt' => $stredit, 'class' => 'iconsmall'));
+                    $html = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('i/edit'), 'alt' => $stredit, 'class' => 'iconsmall'));
                     $buttons[] = html_writer::link($url, $html, array('title' => $stredit));
                 }
 
