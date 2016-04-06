@@ -81,3 +81,6 @@ $string['table_preview'] = 'Preview';
 // Strings for capabilities.
 $string['qrlinks:manage'] = 'Manage QR links';
 $string['qrlinks:view'] = 'View a QR link';
+
+// String for renderer.php
+$string['print_page'] = 'Print Page';

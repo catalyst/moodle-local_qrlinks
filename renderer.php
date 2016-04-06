@@ -66,7 +66,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
      * Renders a helpful button to print the page.
      */
     public function render_qrlinks_print_button() {
-        return '<button id="printbutton" onclick="window.print();">Print Page</button>';
+        return '<button id="printbutton" onclick="window.print();">' . get_string('print_page', 'local_qrlinks') . '</button>';
     }
 
     /**
