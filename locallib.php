@@ -43,25 +43,25 @@ function insert_qrlink($data) {
 /**
  * Helper function to update a QR link record.
  * @param stdClass $data
- * @return boolean|number return value for the update
+ * @return boolean return result of the update
  */
 function update_qrlink($data) {
     global $DB;
 
-    $ret = $DB->update_record('local_qrlinks', $data);
-    return $ret;
+    $res = $DB->update_record('local_qrlinks', $data);
+    return $res;
 }
 
 /**
  * Helper function to delete a QR link record.
  * @param int $id
- * @return boolean|number return value for the delete
+ * @return boolean return result of the delete
  */
 function delete_qrlink($id) {
     global $DB;
 
-    $ret = $DB->delete_records('local_qrlinks', array('id' => $id));
-    return $ret;
+    $res = $DB->delete_records('local_qrlinks', array('id' => $id));
+    return $res;
 }
 
 /**

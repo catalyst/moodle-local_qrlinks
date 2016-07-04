@@ -79,7 +79,7 @@ if ($mform->is_cancelled()) {
 
     if ($qrid > -1) {
         // Update the QR link with a known ID.
-        $qrid = update_qrlink($data);
+        update_qrlink($data);
     } else {
         // Insert a QR link when the ID is unset or -1.
         $qrid = insert_qrlink($data);
