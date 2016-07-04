@@ -51,9 +51,8 @@ $mform = new qrlinks_form();
 
 if ($mform->is_cancelled()) {
 
-    if (isset($SESSION->qrlinkreturnurl)) {
-        $returnurl = $SESSION->qrlinkreturnurl;
-        unset($SESSION->qrlinkreturnurl);
+    if (empty($returnurl)) {
+        $returnurl = new moodle_url('/local/qrlinks/manage.php');
     }
 
     redirect($returnurl);
