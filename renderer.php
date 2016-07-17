@@ -47,7 +47,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
         $desctext = $data->public_description;
         $descdiv = html_writer::div($desctext, 'qrdescription');
 
-        $qrurl = new moodle_url("/local/qrlinks/qr.php?id");
+        $qrurl = new moodle_url("/local/qrlinks/qr.php", array('id' => $data->id) );
         $alt = $data->url;
         $urlstr = html_writer::link($data->url, $data->url);
 
