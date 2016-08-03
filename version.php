@@ -26,8 +26,8 @@ if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from a Moodle page.
 }
 
-$plugin->version   = 2016070401;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->release   = 2016070401;        // Match release exactly to version.
+$plugin->version   = 2016080301;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->release   = 2016080301;        // Match release exactly to version.
 $plugin->requires  = 2014051200;        // Requires Moodle version 2.7
 $plugin->component = 'local_qrlinks';   // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
