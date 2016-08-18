@@ -44,36 +44,36 @@ class qrlinks_form extends moodleform {
         $mform = $this->_form;
 
         // Public fields.
-        $mform->addElement('header', 'qrlink_public_header', get_string('form_element_public_header', 'local_qrlinks'), '');
-        $mform->addElement('static', 'public_help', '', get_string('form_element_public_help', 'local_qrlinks'));
+        $mform->addElement('header', 'qrlink_public_header', get_string('formelementpublicheader', 'local_qrlinks'), '');
+        $mform->addElement('static', 'public_help', '', get_string('formelementpublichelp', 'local_qrlinks'));
 
-        $mform->addElement('text', 'url', get_string('form_element_url', 'local_qrlinks'), 'size="50"');
+        $mform->addElement('text', 'url', get_string('formelementurl', 'local_qrlinks'), 'size="50"');
         $mform->setType('url', PARAM_URL);
-        $mform->addRule('url', get_string('url_missing', 'local_qrlinks'), 'required', null, 'server');
+        $mform->addRule('url', get_string('urlmissing', 'local_qrlinks'), 'required', null, 'server');
 
-        $mform->addElement('text', 'public_name', get_string('form_element_public_name', 'local_qrlinks'), 'size="50"');
+        $mform->addElement('text', 'public_name', get_string('formelementpublicname', 'local_qrlinks'), 'size="50"');
         $mform->setType('public_name', PARAM_TEXT);
-        $mform->addRule('public_name', get_string('public_name_missing', 'local_qrlinks'), 'required', null, 'server');
+        $mform->addRule('public_name', get_string('publicnamemissing', 'local_qrlinks'), 'required', null, 'server');
 
-        $mform->addElement('editor', 'public_description', get_string('form_element_public_description', 'local_qrlinks'), '');
+        $mform->addElement('editor', 'public_description', get_string('formelementpublicdescription', 'local_qrlinks'), '');
         $mform->setType('public_description', PARAM_RAW);
-        $mform->addRule('public_description', get_string('public_description_missing', 'local_qrlinks'), 'required', null, 'server');
+        $mform->addRule('public_description', get_string('publicdescriptionmissing', 'local_qrlinks'), 'required', null, 'server');
 
         // Private fields.
-        $mform->addElement('header', 'qrlink_private_header', get_string('form_element_private_header', 'local_qrlinks'), '');
+        $mform->addElement('header', 'qrlink_private_header', get_string('formelementprivateheader', 'local_qrlinks'), '');
 
-        $mform->addElement('static', 'private_help', '', get_string('form_element_private_help', 'local_qrlinks'));
-        $mform->addElement('text', 'private_name', get_string('form_element_private_name', 'local_qrlinks'), 'size="50"');
+        $mform->addElement('static', 'private_help', '', get_string('formelementprivatehelp', 'local_qrlinks'));
+        $mform->addElement('text', 'private_name', get_string('formelementprivatename', 'local_qrlinks'), 'size="50"');
         $mform->setType('private_name', PARAM_TEXT);
 
-        $mform->addElement('editor', 'private_description', get_string('form_element_private_description', 'local_qrlinks'), '');
+        $mform->addElement('editor', 'private_description', get_string('formelementprivatedescription', 'local_qrlinks'), '');
         $mform->setType('private_description', PARAM_TEXT);
 
         // Hidden id field.
         $mform->addElement('hidden', 'id', -1);
         $mform->setType('id', PARAM_INT);
 
-        $submitlabel = get_string('create_label', 'local_qrlinks');
+        $submitlabel = get_string('createlabel', 'local_qrlinks');
         $this->add_action_buttons(true, $submitlabel);
     }
 
@@ -92,7 +92,7 @@ class qrlinks_form extends moodleform {
             $url = filter_var($data['url'], FILTER_SANITIZE_URL);
 
             if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-                $errors['url'] = get_string('invalid_url', 'local_qrlinks');
+                $errors['url'] = get_string('invalidurl', 'local_qrlinks');
             }
         }
 

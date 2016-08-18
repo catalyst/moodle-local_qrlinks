@@ -69,12 +69,12 @@ function delete_qrlink($id) {
 function generate_table($cid = null, $cmid = null) {
     global $DB, $PAGE;
     $headers = array(
-            get_string('table_header_private_name',         'local_qrlinks'),
-            get_string('table_header_private_description',  'local_qrlinks'),
-            get_string('table_header_url',                  'local_qrlinks'),
-            get_string('table_header_createdby',            'local_qrlinks'),
-            get_string('table_header_datecreated',          'local_qrlinks'),
-            get_string('table_header_options',              'local_qrlinks'),
+            get_string('tableheaderprivate_name',         'local_qrlinks'),
+            get_string('tableheaderprivate_description',  'local_qrlinks'),
+            get_string('tableheaderurl',                  'local_qrlinks'),
+            get_string('tableheadercreatedby',            'local_qrlinks'),
+            get_string('tableheaderdatecreated',          'local_qrlinks'),
+            get_string('tableheaderoptions',              'local_qrlinks'),
     );
 
     // Used for specifying the max pagination size.

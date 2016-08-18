@@ -38,9 +38,9 @@ $sitecontext = context_system::instance();
 $PAGE->set_context($sitecontext);
 $PAGE->set_pagelayout('report');
 
-$title = get_string('preview_title', 'local_qrlinks', $data->public_name);
+$title = get_string('previewtitle', 'local_qrlinks', $data->public_name);
 $PAGE->set_title($title);
-$PAGE->set_heading(get_string('manage_page_heading', 'local_qrlinks'));
+$PAGE->set_heading(get_string('managepageheading', 'local_qrlinks'));
 
 $renderer = $PAGE->get_renderer('local_qrlinks');
 

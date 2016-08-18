@@ -46,7 +46,7 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 
         if (preg_match($qrlinkre, $currentpage, $matches)) {
             // We are in the edit/management page, lets show a link back to management.
-            $str = get_string('manage_link', 'local_qrlinks');
+            $str = get_string('managelink', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/manage.php');
             $linknode = $nav->add($str, $url);
 
@@ -58,7 +58,7 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
 
             $params = array('id' => $id);
 
-            $str = get_string('navigation_edit_link', 'local_qrlinks');
+            $str = get_string('navigationeditlink', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', $params);
             $linknode = $nav->add($str, $url);
 
@@ -81,14 +81,14 @@ function local_qrlinks_extend_navigation(global_navigation $nav) {
                 // No QR link found, lets make a Create Link.
                 $title = $PAGE->title;
                 $params = array('url' => $currentpage, 'title' => $title);
-                $str = get_string('navigation_create_link', 'local_qrlinks');
+                $str = get_string('navigationcreatelink', 'local_qrlinks');
                 $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', $params);
                 $linknode = $nav->add($str, $url);
 
             } else {
                 // QR link found, time for an Edit link.
                 $id = $qrlink->id;
-                $str = get_string('navigation_edit_link', 'local_qrlinks');
+                $str = get_string('navigationeditlink', 'local_qrlinks');
                 $url = new moodle_url('/local/qrlinks/qrlinks_edit.php', array('id' => $id));
                 $linknode = $nav->add($str, $url);
 
@@ -124,7 +124,7 @@ function local_qrlinks_extend_settings_navigation(settings_navigation $nav, cont
 
         // Details https://docs.moodle.org/dev/Local_plugins from here.
         if ($settingsnode = $nav->find('courseadmin', navigation_node::TYPE_COURSE)) {
-            $str = get_string('manage_link', 'local_qrlinks');
+            $str = get_string('managelink', 'local_qrlinks');
             $url = new moodle_url('/local/qrlinks/manage.php', $linkparams);
             $node = navigation_node::create(
                     $str,

@@ -64,7 +64,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
      * Renders a helpful button to print the page.
      */
     public function render_qrlinks_print_button() {
-        return '<button id="printbutton" onclick="window.print();">' . get_string('print_page', 'local_qrlinks') . '</button>';
+        return '<button id="printbutton" onclick="window.print();">' . get_string('printpage', 'local_qrlinks') . '</button>';
     }
 
     /**
@@ -78,7 +78,7 @@ class local_qrlinks_renderer extends plugin_renderer_base {
 
         $stredit    = get_string('edit');
         $strdelete  = get_string('delete');
-        $strpreview = get_string('table_preview', 'local_qrlinks');
+        $strpreview = get_string('tablepreview', 'local_qrlinks');
 
         if (!empty($data)) {
             foreach ($data as $entry) {
