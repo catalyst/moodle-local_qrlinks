@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/CatalystIT-AU/moodle-local_qrlinks.svg?branch=master)](https://travis-ci.org/CatalystIT-AU/moodle-local_qrlinks)
+[![Build Status](https://travis-ci.org/catalyst/moodle-local_qrlinks.svg?branch=master)](https://travis-ci.org/catalyst/moodle-local_qrlinks)
 
 QR Links - Moodle local plugin
 ========================
